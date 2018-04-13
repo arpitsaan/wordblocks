@@ -7,14 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E8033C292080BF48001CDF91 /* UIView+AutoLayoutHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8033C282080BF48001CDF91 /* UIView+AutoLayoutHelper.swift */; };
+		E8033C2C2080CD6B001CDF91 /* WBColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8033C2B2080CD6B001CDF91 /* WBColor.swift */; };
+		E8033C2E2080CE45001CDF91 /* UIColor+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8033C2D2080CE45001CDF91 /* UIColor+Helper.swift */; };
+		E8033C40208106D6001CDF91 /* WBCommons.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8033C3F208106D6001CDF91 /* WBCommons.swift */; };
+		E8033C4420810918001CDF91 /* WBPauseControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8033C4320810918001CDF91 /* WBPauseControl.swift */; };
 		E80BA17A207ED5CC009FA024 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80BA179207ED5CC009FA024 /* AppDelegate.swift */; };
-		E80BA17C207ED5CC009FA024 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80BA17B207ED5CC009FA024 /* ViewController.swift */; };
-		E80BA17F207ED5CC009FA024 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E80BA17D207ED5CC009FA024 /* Main.storyboard */; };
+		E80BA17C207ED5CC009FA024 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80BA17B207ED5CC009FA024 /* GameViewController.swift */; };
 		E80BA182207ED5CC009FA024 /* wordblocks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E80BA180207ED5CC009FA024 /* wordblocks.xcdatamodeld */; };
 		E80BA184207ED5CC009FA024 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E80BA183207ED5CC009FA024 /* Assets.xcassets */; };
 		E80BA187207ED5CC009FA024 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E80BA185207ED5CC009FA024 /* LaunchScreen.storyboard */; };
 		E80BA192207ED5CC009FA024 /* wordblocksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80BA191207ED5CC009FA024 /* wordblocksTests.swift */; };
 		E80BA19D207ED5CC009FA024 /* wordblocksUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80BA19C207ED5CC009FA024 /* wordblocksUITests.swift */; };
+		E8C70D9020802C33002D22E0 /* WBWordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C70D8F20802C33002D22E0 /* WBWordView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,10 +40,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E8033C282080BF48001CDF91 /* UIView+AutoLayoutHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayoutHelper.swift"; sourceTree = "<group>"; };
+		E8033C2B2080CD6B001CDF91 /* WBColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBColor.swift; sourceTree = "<group>"; };
+		E8033C2D2080CE45001CDF91 /* UIColor+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Helper.swift"; sourceTree = "<group>"; };
+		E8033C3F208106D6001CDF91 /* WBCommons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBCommons.swift; sourceTree = "<group>"; };
+		E8033C4320810918001CDF91 /* WBPauseControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBPauseControl.swift; sourceTree = "<group>"; };
 		E80BA176207ED5CC009FA024 /* wordblocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wordblocks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E80BA179207ED5CC009FA024 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E80BA17B207ED5CC009FA024 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		E80BA17E207ED5CC009FA024 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E80BA17B207ED5CC009FA024 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		E80BA181207ED5CC009FA024 /* wordblocks.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = wordblocks.xcdatamodel; sourceTree = "<group>"; };
 		E80BA183207ED5CC009FA024 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E80BA186207ED5CC009FA024 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +58,7 @@
 		E80BA198207ED5CC009FA024 /* wordblocksUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = wordblocksUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E80BA19C207ED5CC009FA024 /* wordblocksUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wordblocksUITests.swift; sourceTree = "<group>"; };
 		E80BA19E207ED5CC009FA024 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E8C70D8F20802C33002D22E0 /* WBWordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBWordView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +86,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E8033C272080AC5D001CDF91 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E8033C282080BF48001CDF91 /* UIView+AutoLayoutHelper.swift */,
+				E8033C2D2080CE45001CDF91 /* UIColor+Helper.swift */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
+		E8033C2A2080CD33001CDF91 /* commons */ = {
+			isa = PBXGroup;
+			children = (
+				E8033C2B2080CD6B001CDF91 /* WBColor.swift */,
+				E8033C3F208106D6001CDF91 /* WBCommons.swift */,
+			);
+			path = commons;
+			sourceTree = "<group>";
+		};
 		E80BA16D207ED5CC009FA024 = {
 			isa = PBXGroup;
 			children = (
@@ -99,9 +127,11 @@
 		E80BA178207ED5CC009FA024 /* wordblocks */ = {
 			isa = PBXGroup;
 			children = (
+				E8033C2A2080CD33001CDF91 /* commons */,
+				E8033C272080AC5D001CDF91 /* extensions */,
+				E8C70D8E20802B62002D22E0 /* views */,
 				E80BA179207ED5CC009FA024 /* AppDelegate.swift */,
-				E80BA17B207ED5CC009FA024 /* ViewController.swift */,
-				E80BA17D207ED5CC009FA024 /* Main.storyboard */,
+				E80BA17B207ED5CC009FA024 /* GameViewController.swift */,
 				E80BA183207ED5CC009FA024 /* Assets.xcassets */,
 				E80BA185207ED5CC009FA024 /* LaunchScreen.storyboard */,
 				E80BA188207ED5CC009FA024 /* Info.plist */,
@@ -126,6 +156,15 @@
 				E80BA19E207ED5CC009FA024 /* Info.plist */,
 			);
 			path = wordblocksUITests;
+			sourceTree = "<group>";
+		};
+		E8C70D8E20802B62002D22E0 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				E8C70D8F20802C33002D22E0 /* WBWordView.swift */,
+				E8033C4320810918001CDF91 /* WBPauseControl.swift */,
+			);
+			path = views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,7 +276,6 @@
 			files = (
 				E80BA187207ED5CC009FA024 /* LaunchScreen.storyboard in Resources */,
 				E80BA184207ED5CC009FA024 /* Assets.xcassets in Resources */,
-				E80BA17F207ED5CC009FA024 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,9 +300,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8033C4420810918001CDF91 /* WBPauseControl.swift in Sources */,
+				E8033C2C2080CD6B001CDF91 /* WBColor.swift in Sources */,
 				E80BA182207ED5CC009FA024 /* wordblocks.xcdatamodeld in Sources */,
-				E80BA17C207ED5CC009FA024 /* ViewController.swift in Sources */,
+				E80BA17C207ED5CC009FA024 /* GameViewController.swift in Sources */,
 				E80BA17A207ED5CC009FA024 /* AppDelegate.swift in Sources */,
+				E8033C2E2080CE45001CDF91 /* UIColor+Helper.swift in Sources */,
+				E8C70D9020802C33002D22E0 /* WBWordView.swift in Sources */,
+				E8033C292080BF48001CDF91 /* UIView+AutoLayoutHelper.swift in Sources */,
+				E8033C40208106D6001CDF91 /* WBCommons.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,14 +344,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		E80BA17D207ED5CC009FA024 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E80BA17E207ED5CC009FA024 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		E80BA185207ED5CC009FA024 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -433,6 +469,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L2VF9Y9HZL;
 				INFOPLIST_FILE = wordblocks/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.acyooman.wordblocks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -448,6 +485,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L2VF9Y9HZL;
 				INFOPLIST_FILE = wordblocks/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.acyooman.wordblocks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
