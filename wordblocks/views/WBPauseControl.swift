@@ -18,14 +18,19 @@ class WBPauseControl: UIView {
     }
     
     func createView() {
-        pauseButton = UIButton.init(type: .system)
+        pauseButton = UIButton.init(type: .custom)
         self.addSubview(pauseButton)
         
-        pauseButton.setTitle("PAUSE", for: .normal)
-        pauseButton.backgroundColor = WBColor.pink
-                pauseButton.addStaticWidthConstraint(constant: 50.0)
-                pauseButton.addStaticHeightConstraint(constant: 50.0)
+        pauseButton.setImage(#imageLiteral(resourceName: "pause-button"), for: .normal)
+                pauseButton.addStaticWidthConstraint(constant: 48)
+                pauseButton.addStaticHeightConstraint(constant: 47.0)
         pauseButton.fillSuperView()
+        
+        pauseButton.addTarget(self, action: #selector(self.pauseButtonSelector), for: .touchUpInside)
+    }
+    
+    @objc func pauseButtonSelector() {
+        NSLog("Pause tapped")
     }
     
     required init?(coder aDecoder: NSCoder) {

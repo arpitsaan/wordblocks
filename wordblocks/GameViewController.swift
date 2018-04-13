@@ -15,6 +15,7 @@ class GameViewController: UIViewController {
     var topWordView = WBWordView()
     var bottomWordView = WBWordView()
     var inputControl = WBInputControl()
+    var scoreView = WBScoreView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,13 +25,19 @@ class GameViewController: UIViewController {
         pauseControl = WBPauseControl.init(frame: self.view.bounds)
         self.view.addSubview(pauseControl)
         pauseControl.addLeadingConstraint(toView: self.view, constant: K.padding.side)
-        pauseControl.addTopConstraint(toView: self.view, constant: 30)
+        pauseControl.addTopConstraint(toView: self.view, constant: K.padding.side)
         
         //lives view
         livesView = WBLivesView()
         self.view.addSubview(livesView)
         self.livesView.addCenterXConstraint(toView: self.view)
-        self.livesView.addTopConstraint(toView: self.view, constant:30)
+        self.livesView.addTopConstraint(toView: self.view, constant:K.padding.side+10.0)
+        
+        //score card view
+        scoreView = WBScoreView()
+        self.view.addSubview(livesView)
+        self.livesView.addTrailingConstraint(toView: self.view, constant:K.padding.side)
+        self.livesView.addTopConstraint(toView: self.view, constant:K.padding.side)
         
         //input controls view
         inputControl = WBInputControl()
@@ -52,7 +59,7 @@ class GameViewController: UIViewController {
         self.view.addSubview(bottomWordView)
         bottomWordView.addCenterXConstraint(toView: self.view)
         bottomWordView.addBottomConstraint(toView: self.view, constant: -200)
-
+        
         //animation
         self.topWordView.transform.translatedBy(x: 0, y: -1000)
         self.view.layoutIfNeeded()

@@ -32,6 +32,9 @@ class WBLivesView: UIView {
         containerStackView.spacing = K.padding.side
         containerStackView.distribution = .fill
         containerStackView.axis = .horizontal
+        
+        //set 1 life inactive
+        lifeView1.setInactive()
     }
 
     //misc

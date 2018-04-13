@@ -28,8 +28,6 @@ class WBLifeView: UIView {
         goneImageView.addStaticHeightConstraint(constant: 27)
         goneImageView.addStaticWidthConstraint(constant: 22)
         goneImageView.fillSuperView()
-        
-        goneImageView.backgroundColor = UIColor.yellow
     }
     
     //setters
