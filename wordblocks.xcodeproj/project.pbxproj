@@ -12,10 +12,14 @@
 		E8033C2E2080CE45001CDF91 /* UIColor+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8033C2D2080CE45001CDF91 /* UIColor+Helper.swift */; };
 		E8033C40208106D6001CDF91 /* WBCommons.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8033C3F208106D6001CDF91 /* WBCommons.swift */; };
 		E8033C4420810918001CDF91 /* WBPauseControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8033C4320810918001CDF91 /* WBPauseControl.swift */; };
+		E8033C4620811ADD001CDF91 /* WBLivesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8033C4520811ADD001CDF91 /* WBLivesView.swift */; };
+		E8033C4820811B04001CDF91 /* WBLifeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8033C4720811B04001CDF91 /* WBLifeView.swift */; };
+		E8033C4A208125D7001CDF91 /* WBConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8033C49208125D7001CDF91 /* WBConstants.swift */; };
+		E8033C4E20813138001CDF91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8033C4D20813138001CDF91 /* Assets.xcassets */; };
+		E8033C502081316E001CDF91 /* WBInputControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8033C4F2081316E001CDF91 /* WBInputControl.swift */; };
 		E80BA17A207ED5CC009FA024 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80BA179207ED5CC009FA024 /* AppDelegate.swift */; };
 		E80BA17C207ED5CC009FA024 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80BA17B207ED5CC009FA024 /* GameViewController.swift */; };
 		E80BA182207ED5CC009FA024 /* wordblocks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E80BA180207ED5CC009FA024 /* wordblocks.xcdatamodeld */; };
-		E80BA184207ED5CC009FA024 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E80BA183207ED5CC009FA024 /* Assets.xcassets */; };
 		E80BA187207ED5CC009FA024 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E80BA185207ED5CC009FA024 /* LaunchScreen.storyboard */; };
 		E80BA192207ED5CC009FA024 /* wordblocksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80BA191207ED5CC009FA024 /* wordblocksTests.swift */; };
 		E80BA19D207ED5CC009FA024 /* wordblocksUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80BA19C207ED5CC009FA024 /* wordblocksUITests.swift */; };
@@ -45,11 +49,15 @@
 		E8033C2D2080CE45001CDF91 /* UIColor+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Helper.swift"; sourceTree = "<group>"; };
 		E8033C3F208106D6001CDF91 /* WBCommons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBCommons.swift; sourceTree = "<group>"; };
 		E8033C4320810918001CDF91 /* WBPauseControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBPauseControl.swift; sourceTree = "<group>"; };
+		E8033C4520811ADD001CDF91 /* WBLivesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBLivesView.swift; sourceTree = "<group>"; };
+		E8033C4720811B04001CDF91 /* WBLifeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBLifeView.swift; sourceTree = "<group>"; };
+		E8033C49208125D7001CDF91 /* WBConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBConstants.swift; sourceTree = "<group>"; };
+		E8033C4D20813138001CDF91 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = wordblocks/Assets.xcassets; sourceTree = "<group>"; };
+		E8033C4F2081316E001CDF91 /* WBInputControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBInputControl.swift; sourceTree = "<group>"; };
 		E80BA176207ED5CC009FA024 /* wordblocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wordblocks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E80BA179207ED5CC009FA024 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E80BA17B207ED5CC009FA024 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		E80BA181207ED5CC009FA024 /* wordblocks.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = wordblocks.xcdatamodel; sourceTree = "<group>"; };
-		E80BA183207ED5CC009FA024 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E80BA186207ED5CC009FA024 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E80BA188207ED5CC009FA024 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E80BA18D207ED5CC009FA024 /* wordblocksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = wordblocksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,6 +108,7 @@
 			children = (
 				E8033C2B2080CD6B001CDF91 /* WBColor.swift */,
 				E8033C3F208106D6001CDF91 /* WBCommons.swift */,
+				E8033C49208125D7001CDF91 /* WBConstants.swift */,
 			);
 			path = commons;
 			sourceTree = "<group>";
@@ -107,6 +116,7 @@
 		E80BA16D207ED5CC009FA024 = {
 			isa = PBXGroup;
 			children = (
+				E8033C4D20813138001CDF91 /* Assets.xcassets */,
 				E80BA178207ED5CC009FA024 /* wordblocks */,
 				E80BA190207ED5CC009FA024 /* wordblocksTests */,
 				E80BA19B207ED5CC009FA024 /* wordblocksUITests */,
@@ -132,7 +142,6 @@
 				E8C70D8E20802B62002D22E0 /* views */,
 				E80BA179207ED5CC009FA024 /* AppDelegate.swift */,
 				E80BA17B207ED5CC009FA024 /* GameViewController.swift */,
-				E80BA183207ED5CC009FA024 /* Assets.xcassets */,
 				E80BA185207ED5CC009FA024 /* LaunchScreen.storyboard */,
 				E80BA188207ED5CC009FA024 /* Info.plist */,
 				E80BA180207ED5CC009FA024 /* wordblocks.xcdatamodeld */,
@@ -163,6 +172,9 @@
 			children = (
 				E8C70D8F20802C33002D22E0 /* WBWordView.swift */,
 				E8033C4320810918001CDF91 /* WBPauseControl.swift */,
+				E8033C4520811ADD001CDF91 /* WBLivesView.swift */,
+				E8033C4720811B04001CDF91 /* WBLifeView.swift */,
+				E8033C4F2081316E001CDF91 /* WBInputControl.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -274,8 +286,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8033C4E20813138001CDF91 /* Assets.xcassets in Resources */,
 				E80BA187207ED5CC009FA024 /* LaunchScreen.storyboard in Resources */,
-				E80BA184207ED5CC009FA024 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,10 +317,14 @@
 				E80BA182207ED5CC009FA024 /* wordblocks.xcdatamodeld in Sources */,
 				E80BA17C207ED5CC009FA024 /* GameViewController.swift in Sources */,
 				E80BA17A207ED5CC009FA024 /* AppDelegate.swift in Sources */,
+				E8033C4820811B04001CDF91 /* WBLifeView.swift in Sources */,
 				E8033C2E2080CE45001CDF91 /* UIColor+Helper.swift in Sources */,
+				E8033C4620811ADD001CDF91 /* WBLivesView.swift in Sources */,
 				E8C70D9020802C33002D22E0 /* WBWordView.swift in Sources */,
 				E8033C292080BF48001CDF91 /* UIView+AutoLayoutHelper.swift in Sources */,
+				E8033C4A208125D7001CDF91 /* WBConstants.swift in Sources */,
 				E8033C40208106D6001CDF91 /* WBCommons.swift in Sources */,
+				E8033C502081316E001CDF91 /* WBInputControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
