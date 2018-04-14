@@ -23,9 +23,11 @@
 		E80BA187207ED5CC009FA024 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E80BA185207ED5CC009FA024 /* LaunchScreen.storyboard */; };
 		E80BA192207ED5CC009FA024 /* wordblocksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80BA191207ED5CC009FA024 /* wordblocksTests.swift */; };
 		E80BA19D207ED5CC009FA024 /* wordblocksUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80BA19C207ED5CC009FA024 /* wordblocksUITests.swift */; };
+		E87FE5A92082A7AB00578474 /* WBGameConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87FE5A82082A7AB00578474 /* WBGameConfig.swift */; };
+		E87FE5AB2082A90500578474 /* WBTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87FE5AA2082A90500578474 /* WBTurn.swift */; };
+		E87FE5AD2082AACC00578474 /* WBWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87FE5AC2082AACC00578474 /* WBWord.swift */; };
+		E87FE5B12082ACB200578474 /* WBGameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87FE5B02082ACB200578474 /* WBGameManager.swift */; };
 		E897FABA20813EE100F7D6A1 /* WBScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E897FAB920813EE100F7D6A1 /* WBScoreView.swift */; };
-		E897FACC2082182D00F7D6A1 /* CurrentGameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E897FACB2082182D00F7D6A1 /* CurrentGameManager.swift */; };
-		E897FACF20821E4000F7D6A1 /* GameStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E897FACE20821E4000F7D6A1 /* GameStateManager.swift */; };
 		E897FAD120821EAA00F7D6A1 /* WBDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E897FAD020821EAA00F7D6A1 /* WBDataManager.swift */; };
 		E897FAD320821F3300F7D6A1 /* words.json in Resources */ = {isa = PBXBuildFile; fileRef = E897FAD220821F3300F7D6A1 /* words.json */; };
 		E8C70D9020802C33002D22E0 /* WBWordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C70D8F20802C33002D22E0 /* WBWordView.swift */; };
@@ -71,9 +73,11 @@
 		E80BA198207ED5CC009FA024 /* wordblocksUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = wordblocksUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E80BA19C207ED5CC009FA024 /* wordblocksUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wordblocksUITests.swift; sourceTree = "<group>"; };
 		E80BA19E207ED5CC009FA024 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E87FE5A82082A7AB00578474 /* WBGameConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBGameConfig.swift; sourceTree = "<group>"; };
+		E87FE5AA2082A90500578474 /* WBTurn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBTurn.swift; sourceTree = "<group>"; };
+		E87FE5AC2082AACC00578474 /* WBWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBWord.swift; sourceTree = "<group>"; };
+		E87FE5B02082ACB200578474 /* WBGameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBGameManager.swift; sourceTree = "<group>"; };
 		E897FAB920813EE100F7D6A1 /* WBScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBScoreView.swift; sourceTree = "<group>"; };
-		E897FACB2082182D00F7D6A1 /* CurrentGameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentGameManager.swift; sourceTree = "<group>"; };
-		E897FACE20821E4000F7D6A1 /* GameStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateManager.swift; sourceTree = "<group>"; };
 		E897FAD020821EAA00F7D6A1 /* WBDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBDataManager.swift; sourceTree = "<group>"; };
 		E897FAD220821F3300F7D6A1 /* words.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = words.json; sourceTree = "<group>"; };
 		E8C70D8F20802C33002D22E0 /* WBWordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBWordView.swift; sourceTree = "<group>"; };
@@ -147,6 +151,7 @@
 		E80BA178207ED5CC009FA024 /* wordblocks */ = {
 			isa = PBXGroup;
 			children = (
+				E87FE5A52082A62A00578474 /* models */,
 				E897FACD20821E2800F7D6A1 /* managers */,
 				E8033C2A2080CD33001CDF91 /* commons */,
 				E8033C272080AC5D001CDF91 /* extensions */,
@@ -179,12 +184,21 @@
 			path = wordblocksUITests;
 			sourceTree = "<group>";
 		};
+		E87FE5A52082A62A00578474 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				E87FE5A82082A7AB00578474 /* WBGameConfig.swift */,
+				E87FE5AA2082A90500578474 /* WBTurn.swift */,
+				E87FE5AC2082AACC00578474 /* WBWord.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
 		E897FACD20821E2800F7D6A1 /* managers */ = {
 			isa = PBXGroup;
 			children = (
-				E897FACB2082182D00F7D6A1 /* CurrentGameManager.swift */,
-				E897FACE20821E4000F7D6A1 /* GameStateManager.swift */,
 				E897FAD020821EAA00F7D6A1 /* WBDataManager.swift */,
+				E87FE5B02082ACB200578474 /* WBGameManager.swift */,
 			);
 			path = managers;
 			sourceTree = "<group>";
@@ -336,6 +350,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E87FE5AD2082AACC00578474 /* WBWord.swift in Sources */,
 				E8033C4420810918001CDF91 /* WBPauseControl.swift in Sources */,
 				E8033C2C2080CD6B001CDF91 /* WBColor.swift in Sources */,
 				E80BA182207ED5CC009FA024 /* wordblocks.xcdatamodeld in Sources */,
@@ -343,15 +358,16 @@
 				E80BA17A207ED5CC009FA024 /* AppDelegate.swift in Sources */,
 				E8033C4820811B04001CDF91 /* WBLifeView.swift in Sources */,
 				E8033C2E2080CE45001CDF91 /* UIColor+Helper.swift in Sources */,
-				E897FACF20821E4000F7D6A1 /* GameStateManager.swift in Sources */,
 				E8033C4620811ADD001CDF91 /* WBLivesView.swift in Sources */,
 				E8C70D9020802C33002D22E0 /* WBWordView.swift in Sources */,
 				E8033C292080BF48001CDF91 /* UIView+AutoLayoutHelper.swift in Sources */,
+				E87FE5B12082ACB200578474 /* WBGameManager.swift in Sources */,
 				E8033C4A208125D7001CDF91 /* WBConstants.swift in Sources */,
+				E87FE5AB2082A90500578474 /* WBTurn.swift in Sources */,
+				E87FE5A92082A7AB00578474 /* WBGameConfig.swift in Sources */,
 				E8033C40208106D6001CDF91 /* WBCommons.swift in Sources */,
 				E897FABA20813EE100F7D6A1 /* WBScoreView.swift in Sources */,
 				E897FAD120821EAA00F7D6A1 /* WBDataManager.swift in Sources */,
-				E897FACC2082182D00F7D6A1 /* CurrentGameManager.swift in Sources */,
 				E8033C502081316E001CDF91 /* WBInputControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

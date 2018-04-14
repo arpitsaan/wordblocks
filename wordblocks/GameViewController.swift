@@ -8,23 +8,12 @@
 
 import UIKit
 
-
-enum WBGameState {
-    case welcomeScreen
-    case inProgress
-    case userWin
-    case userLose
-    case gameOver
-    case paused
-    case resetz
-}
-
 class GameViewController: UIViewController, WBInputControlDelegate {
     
     var animator: UIDynamicAnimator!
     var gravity: UIGravityBehavior!
     var collision: UICollisionBehavior!
-    var currentState: WBGameState
+    var currentState: WBGameState!
     
     var pauseControl = WBPauseControl()
     var livesView = WBLivesView()
@@ -154,7 +143,7 @@ extension GameViewController: UICollisionBehaviorDelegate {
 extension GameViewController {
     func userIsWrong(byCollision: Bool) {
         
-        let remainingLives = CurrentGameManager.sharedInstance.reduceAndGetUpdatedLives()
+//        let remainingLives = CurrentTurnManager.sharedInstance.reduceAndGetUpdatedLives()
 //        let delay = delayed ? 0 : 0
         
         UIView.animate(withDuration: 0.1, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 1.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
@@ -174,8 +163,8 @@ extension GameViewController {
             
             self.present(alertController, animated: true, completion: {
                 self.resetScreen()
-                CurrentGameManager.sharedInstance.setRemainingLives(count: 3)
-                self.livesView.setActiveLives(count: CurrentGameManager.sharedInstance.getRemainingLives())
+                CurrentTurnManager.sharedInstance.setRemainingLives(count: 3)
+                self.livesView.setActiveLives(count: CurrentTurnManager.sharedInstance.getRemainingLives())
             })
             
         }
