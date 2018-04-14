@@ -51,7 +51,7 @@ class WBInputControl: UIView {
         containerStackView.spacing = K.padding.side
         containerStackView.distribution = .fillEqually
         containerStackView.axis = .horizontal
-        containerStackView.fillSuperView(UIEdgeInsets.init(top: K.padding.side, left: K.padding.side, bottom: K.padding.side, right: K.padding.side))
+        containerStackView.fillSuperView(UIEdgeInsets.init(top: K.padding.side, left: K.padding.side, bottom: K.padding.side+24.0, right: K.padding.side))
     }
     
     @objc func didTapCorrectButton() {
