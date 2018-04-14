@@ -29,7 +29,7 @@ class WBInputControl: UIView {
 
     //ui
     private func createView() {
-        //correct button
+        //incorrect button
         incorrectButton = UIButton.init(type: .custom)
         incorrectButton.setImage(#imageLiteral(resourceName: "red-button-normal"), for: .normal)
         incorrectButton.setImage(#imageLiteral(resourceName: "red-button-pressed"), for: .highlighted)
@@ -37,7 +37,7 @@ class WBInputControl: UIView {
         incorrectButton.addStaticWidthConstraint(constant: 111)
         incorrectButton.addTarget(self, action: #selector(self.didTapIncorrectButton), for: .touchUpInside)
         
-        //incorrect button
+        //correct button
         correctButton = UIButton.init(type: .custom)
         correctButton.setImage(#imageLiteral(resourceName: "green-button-normal"), for: .normal)
         correctButton.setImage(#imageLiteral(resourceName: "green-button-pressed"), for: .highlighted)

@@ -9,11 +9,22 @@
 import UIKit
 
 
+enum WBGameState {
+    case welcomeScreen
+    case inProgress
+    case userWin
+    case userLose
+    case gameOver
+    case paused
+    case resetz
+}
+
 class GameViewController: UIViewController, WBInputControlDelegate {
     
     var animator: UIDynamicAnimator!
     var gravity: UIGravityBehavior!
     var collision: UICollisionBehavior!
+    var currentState: WBGameState
     
     var pauseControl = WBPauseControl()
     var livesView = WBLivesView()
@@ -104,14 +115,14 @@ class GameViewController: UIViewController, WBInputControlDelegate {
         self.view.layoutIfNeeded()
     }
     
-    func startAnimation() {
+    func startGame() {
         //animation
         let itemBehaviour = UIDynamicItemBehavior(items: [topWordView, bottomWordView])
-        itemBehaviour.elasticity = 0
+        itemBehaviour.elasticity = 0.1
         
         animator = UIDynamicAnimator(referenceView: view)
         gravity = UIGravityBehavior(items: [topWordView])
-        gravity.magnitude = 0.6
+        gravity.magnitude = 0.1
         animator.addBehavior(gravity)
         
         collision = UICollisionBehavior(items: [topWordView, bottomWordView])
@@ -122,7 +133,7 @@ class GameViewController: UIViewController, WBInputControlDelegate {
     
     //inputs
     func didTapCorrectButton() {
-        self.startAnimation()
+        self.startGame()
     }
     
     func didTapIncorrectButton() {
@@ -135,18 +146,18 @@ extension GameViewController: UICollisionBehaviorDelegate {
     func collisionBehavior(_ behavior: UICollisionBehavior, endedContactFor item1: UIDynamicItem, with item2: UIDynamicItem) {
         if !self.didTouchOnce {
             self.didTouchOnce = true
-            self.userIsWrong(delayed: true)
+            self.userIsWrong(byCollision: true)
         }
     }
 }
 
 extension GameViewController {
-    func userIsWrong(delayed: Bool) {
+    func userIsWrong(byCollision: Bool) {
         
         let remainingLives = CurrentGameManager.sharedInstance.reduceAndGetUpdatedLives()
-        let delay = delayed ? 0.3 : 0
+//        let delay = delayed ? 0 : 0
         
-        UIView.animate(withDuration: 0.1, delay: delay, usingSpringWithDamping: 0.9, initialSpringVelocity: 1.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
+        UIView.animate(withDuration: 0.1, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 1.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
             self.view.backgroundColor = WBColor.red
             self.inputControl.alpha = 0
             self.pauseControl.alpha = 0
