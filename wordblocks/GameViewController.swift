@@ -81,13 +81,16 @@ class GameViewController: UIViewController, WBInputControlDelegate {
     
     func resetPositions() {
         self.animator.removeAllBehaviors()
+        self.topWordView.transform = .identity
+        self.bottomWordView.transform = .identity
+        self.view.layoutIfNeeded()
     }
     
     func startAnimation() {
         //animation
         animator = UIDynamicAnimator(referenceView: view)
         gravity = UIGravityBehavior(items: [topWordView])
-        gravity.setAngle(90, magnitude: 0.2)
+        gravity.magnitude = 0.6
         animator.addBehavior(gravity)
         
         collision = UICollisionBehavior(items: [topWordView, bottomWordView])
@@ -97,7 +100,6 @@ class GameViewController: UIViewController, WBInputControlDelegate {
     
     //inputs
     func didTapCorrectButton() {
-        self.view.layoutIfNeeded()
         self.startAnimation()
     }
     
