@@ -8,16 +8,16 @@
 
 import UIKit
 
+protocol WBInputControlDelegate {
+    func didTapCorrectButton()
+    func didTapIncorrectButton()
+}
+
 class WBInputControl: UIView {
     
-    //type
-    enum WBInputControlType {
-        case correct
-        case incorrect
-    }
-    
     //properties
-    var inCorrectButton = UIButton()
+    var delegate:WBInputControlDelegate?
+    var incorrectButton = UIButton()
     var correctButton = UIButton()
     var containerStackView = UIStackView()
 
@@ -30,12 +30,12 @@ class WBInputControl: UIView {
     //ui
     private func createView() {
         //correct button
-        inCorrectButton = UIButton.init(type: .custom)
-        inCorrectButton.setImage(#imageLiteral(resourceName: "red-button-normal"), for: .normal)
-        inCorrectButton.setImage(#imageLiteral(resourceName: "red-button-pressed"), for: .highlighted)
-        inCorrectButton.addStaticHeightConstraint(constant: 111)
-        inCorrectButton.addStaticWidthConstraint(constant: 111)
-        inCorrectButton.addTarget(self, action: #selector(self.didTapCorrectButton), for: .touchUpInside)
+        incorrectButton = UIButton.init(type: .custom)
+        incorrectButton.setImage(#imageLiteral(resourceName: "red-button-normal"), for: .normal)
+        incorrectButton.setImage(#imageLiteral(resourceName: "red-button-pressed"), for: .highlighted)
+        incorrectButton.addStaticHeightConstraint(constant: 111)
+        incorrectButton.addStaticWidthConstraint(constant: 111)
+        incorrectButton.addTarget(self, action: #selector(self.didTapIncorrectButton), for: .touchUpInside)
         
         //incorrect button
         correctButton = UIButton.init(type: .custom)
@@ -43,10 +43,10 @@ class WBInputControl: UIView {
         correctButton.setImage(#imageLiteral(resourceName: "green-button-pressed"), for: .highlighted)
         correctButton.addStaticHeightConstraint(constant: 111)
         correctButton.addStaticWidthConstraint(constant: 111)
-        correctButton.addTarget(self, action: #selector(self.didTapIncorrectButton), for: .touchUpInside)
+        correctButton.addTarget(self, action: #selector(self.didTapCorrectButton), for: .touchUpInside)
         
         //containerStackView
-        containerStackView = UIStackView.init(arrangedSubviews: [inCorrectButton, correctButton])
+        containerStackView = UIStackView.init(arrangedSubviews: [incorrectButton, correctButton])
         self.addSubview(containerStackView)
         containerStackView.spacing = K.padding.side
         containerStackView.distribution = .fillEqually
@@ -56,10 +56,13 @@ class WBInputControl: UIView {
     
     @objc func didTapCorrectButton() {
         NSLog("CorrectButton")
+        delegate?.didTapCorrectButton()
+        
     }
     
     @objc func didTapIncorrectButton() {
         NSLog("IncorrectButton")
+        delegate?.didTapIncorrectButton()
     }
     
     //misc

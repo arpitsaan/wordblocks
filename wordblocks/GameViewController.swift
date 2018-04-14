@@ -8,7 +8,11 @@
 
 import UIKit
 
-class GameViewController: UIViewController {
+class GameViewController: UIViewController, WBInputControlDelegate {
+    
+    var animator: UIDynamicAnimator!
+    var gravity: UIGravityBehavior!
+    var collision: UICollisionBehavior!
     
     var pauseControl = WBPauseControl()
     var livesView = WBLivesView()
@@ -43,6 +47,7 @@ class GameViewController: UIViewController {
         
         //input controls view
         inputControl = WBInputControl()
+        inputControl.delegate = self
         self.view.addSubview(inputControl)
         self.inputControl.addLeadingConstraint(toView: self.view)
         self.inputControl.addTrailingConstraint(toView: self.view)
@@ -53,7 +58,7 @@ class GameViewController: UIViewController {
         topWordView.setWordData(wordData: "headteacher")
         self.view.addSubview(topWordView)
         topWordView.addCenterXConstraint(toView: self.view)
-        topWordView.addBottomConstraint(toView: self.view, constant: -250)
+        topWordView.addTopConstraint(toView: self.view, constant: 50)
         
         //bottom word
         bottomWordView = WBWordView.init()
@@ -62,18 +67,7 @@ class GameViewController: UIViewController {
         bottomWordView.addCenterXConstraint(toView: self.view)
         bottomWordView.addBottomConstraint(toView: self.view, constant: -200)
         
-        //animation
-        self.topWordView.transform.translatedBy(x: 0, y: -1000)
         self.view.layoutIfNeeded()
-        animateTopWord()
-    }
-    
-    func animateTopWord() {
-        UIView.animate(withDuration: 10.0, animations: {
-            self.topWordView.transform.translatedBy(x: 0, y: 0)
-        }, completion: { finished in
-            NSLog("Finished animating")
-        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -84,5 +78,33 @@ class GameViewController: UIViewController {
     override var prefersStatusBarHidden: Bool {
         return true;
     }
+    
+    func resetPositions() {
+        self.animator.removeAllBehaviors()
+    }
+    
+    func startAnimation() {
+        //animation
+        animator = UIDynamicAnimator(referenceView: view)
+        gravity = UIGravityBehavior(items: [topWordView])
+        gravity.setAngle(90, magnitude: 0.2)
+        animator.addBehavior(gravity)
+        
+        collision = UICollisionBehavior(items: [topWordView, bottomWordView])
+        collision.translatesReferenceBoundsIntoBoundary = true
+        animator.addBehavior(collision)
+    }
+    
+    //inputs
+    func didTapCorrectButton() {
+        self.view.layoutIfNeeded()
+        self.startAnimation()
+    }
+    
+    func didTapIncorrectButton() {
+        self.resetPositions()
+        self.view.layoutIfNeeded()
+    }
 }
+
 
