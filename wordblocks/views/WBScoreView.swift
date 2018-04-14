@@ -13,6 +13,7 @@ class WBScoreView: UIView {
     //properties
     var currentScoreLabel = UILabel()
     var topScoreLabel = UILabel()
+    var topScoreBgView = UIView()
     var containerStackView = UIStackView()
     
     //init
@@ -34,25 +35,33 @@ class WBScoreView: UIView {
         currentScoreLabel.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
         currentScoreLabel.setContentHuggingPriority(.required, for: .vertical)
         
+        //top score label bg
+        topScoreBgView = UIView()
+        topScoreBgView.backgroundColor = WBColor.green
+        topScoreBgView.addStaticHeightConstraint(constant: 18)
+        topScoreBgView.addStaticWidthConstraint(constant: 52)
+        topScoreBgView.layer.cornerRadius = 2.0
+        topScoreBgView.clipsToBounds = true
+        
         //top score label
         topScoreLabel = UILabel.init()
-        topScoreLabel.font = UIFont(name: "DINCondensed-Bold ", size: 18)
-        topScoreLabel.textColor = WBColor.textDarker
         topScoreLabel.textAlignment = .center
+        topScoreLabel.font = UIFont(name: "DINCondensed-Bold", size: 18)
+        topScoreLabel.textColor = WBColor.textDarker
         topScoreLabel.setContentHuggingPriority(.required, for: .horizontal)
         topScoreLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
         topScoreLabel.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
         topScoreLabel.setContentHuggingPriority(.required, for: .vertical)
-        
-        topScoreLabel.layer.cornerRadius = 4.0
-        topScoreLabel.clipsToBounds = true
-        
+        topScoreBgView.addSubview(topScoreLabel)
+        topScoreLabel.addCenterXConstraint(toView: topScoreBgView)
+        topScoreLabel.addCenterYConstraint(toView: topScoreBgView, constant: 3.0)
+     
         //container view
-        self.containerStackView.addArrangedSubview(topScoreLabel)
+        self.containerStackView.addArrangedSubview(topScoreBgView)
         self.containerStackView.addArrangedSubview(currentScoreLabel)
         self.addSubview(containerStackView)
-        containerStackView.spacing = 0
-        containerStackView.distribution = .fill
+        containerStackView.spacing = -6
+        containerStackView.distribution = .fillProportionally
         containerStackView.axis = .vertical
         
         containerStackView.fillSuperView()
@@ -60,11 +69,11 @@ class WBScoreView: UIView {
     
     //setters
     func setCurrentScore(currentScore: Int) {
-        self.currentScoreLabel.text = String.init(format: "%@", currentScore)
+        self.currentScoreLabel.text = "77"
     }
     
     func setTopScore(topScore: Int) {
-        self.topScoreLabel.text = String.init(format: "   TOP %@   ", topScore)
+        self.topScoreLabel.text = "TOP 157"
     }
     
     //misc

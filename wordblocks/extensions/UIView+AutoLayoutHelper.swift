@@ -302,36 +302,15 @@ extension UIView {
         return constraint
     }
     
-    @discardableResult
-    public func addStaticWidthConstraint(constant: CGFloat = 0.0) -> NSLayoutConstraint {
-        
-        let constraint = createConstraint(attribute: NSLayoutAttribute.width, toView: nil, attribute: NSLayoutAttribute.width, relation: NSLayoutRelation.equal, constant: constant)
-        addConstraintToSuperview(constraint)
-        
-        return constraint
+    public func addStaticWidthConstraint(constant: CGFloat = 0.0) {
+        let constraint = NSLayoutConstraint.init(item: self, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: constant)
+        self.addConstraint(constraint)
     }
 
-    @discardableResult
-    public func addStaticHeightConstraint(constant: CGFloat = 0.0) -> NSLayoutConstraint {
-        
-        let constraint = createConstraint(attribute: .height, toView: nil, attribute: NSLayoutAttribute.width, relation: NSLayoutRelation.equal, constant: constant)
-        addConstraintToSuperview(constraint)
-        
-        return constraint
+    public func addStaticHeightConstraint(constant: CGFloat = 0.0) {
+        let constraint = NSLayoutConstraint.init(item: self, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: constant)
+        self.addConstraint(constraint)
     }
-
-    
-    
-//
-//    - (void)setViewWidth:(CGFloat)constant {
-//    if (![self validate:self]) {
-//    return;
-//    }
-//    self.widthConstraint = [self.widthAnchor constraintEqualToConstant:constant];
-//    self.widthConstraint.active = YES;
-//    }
-//
-
 
     // MARK: - Height
 

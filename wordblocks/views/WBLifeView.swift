@@ -23,6 +23,7 @@ class WBLifeView: UIView {
     //ui
     private func createView() {
         goneImageView = UIImageView(image: UIImage.init(named: "live-heart-active"))
+        goneImageView.layer.minificationFilter = kCAFilterTrilinear
         goneImageView.contentMode = UIViewContentMode.scaleAspectFit
         self.addSubview(goneImageView)
         goneImageView.addStaticHeightConstraint(constant: 27)

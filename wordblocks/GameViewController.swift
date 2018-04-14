@@ -35,9 +35,11 @@ class GameViewController: UIViewController {
         
         //score card view
         scoreView = WBScoreView()
-        self.view.addSubview(livesView)
-        self.livesView.addTrailingConstraint(toView: self.view, constant:K.padding.side)
-        self.livesView.addTopConstraint(toView: self.view, constant:K.padding.side)
+        self.view.addSubview(scoreView)
+        scoreView.addTrailingConstraint(toView: self.view, constant:-K.padding.side)
+        scoreView.addTopConstraint(toView: self.view, constant:K.padding.side)
+        scoreView.setTopScore(topScore: 140)
+        scoreView.setCurrentScore(currentScore: 77)
         
         //input controls view
         inputControl = WBInputControl()
@@ -55,7 +57,7 @@ class GameViewController: UIViewController {
         
         //bottom word
         bottomWordView = WBWordView.init()
-        bottomWordView.setWordData(wordData: "director del colegio / directora del colegio")
+        bottomWordView.setWordData(wordData: "director del colegio")
         self.view.addSubview(bottomWordView)
         bottomWordView.addCenterXConstraint(toView: self.view)
         bottomWordView.addBottomConstraint(toView: self.view, constant: -200)

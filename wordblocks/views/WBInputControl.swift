@@ -17,8 +17,8 @@ class WBInputControl: UIView {
     }
     
     //properties
+    var inCorrectButton = UIButton()
     var correctButton = UIButton()
-    var incorrectButton = UIButton()
     var containerStackView = UIStackView()
 
     //init
@@ -30,28 +30,28 @@ class WBInputControl: UIView {
     //ui
     private func createView() {
         //correct button
-        correctButton = UIButton.init(type: .custom)
-        incorrectButton.setImage(#imageLiteral(resourceName: "red-button-normal"), for: .normal)
-        incorrectButton.setImage(#imageLiteral(resourceName: "red-button-pressed"), for: .highlighted)
-        correctButton.addStaticHeightConstraint(constant: 118)
-        correctButton.addStaticWidthConstraint(constant: 137)
-        correctButton.addTarget(self, action: #selector(self.didTapCorrectButton), for: .touchUpInside)
+        inCorrectButton = UIButton.init(type: .custom)
+        inCorrectButton.setImage(#imageLiteral(resourceName: "red-button-normal"), for: .normal)
+        inCorrectButton.setImage(#imageLiteral(resourceName: "red-button-pressed"), for: .highlighted)
+        inCorrectButton.addStaticHeightConstraint(constant: 111)
+        inCorrectButton.addStaticWidthConstraint(constant: 111)
+        inCorrectButton.addTarget(self, action: #selector(self.didTapCorrectButton), for: .touchUpInside)
         
         //incorrect button
-        incorrectButton = UIButton.init(type: .custom)
-        incorrectButton.setImage(#imageLiteral(resourceName: "green-button-normal"), for: .normal)
-        incorrectButton.setImage(#imageLiteral(resourceName: "green-button-pressed"), for: .highlighted)
-        incorrectButton.addStaticHeightConstraint(constant: 118)
-        incorrectButton.addStaticWidthConstraint(constant: 137)
-        incorrectButton.addTarget(self, action: #selector(self.didTapIncorrectButton), for: .touchUpInside)
+        correctButton = UIButton.init(type: .custom)
+        correctButton.setImage(#imageLiteral(resourceName: "green-button-normal"), for: .normal)
+        correctButton.setImage(#imageLiteral(resourceName: "green-button-pressed"), for: .highlighted)
+        correctButton.addStaticHeightConstraint(constant: 111)
+        correctButton.addStaticWidthConstraint(constant: 111)
+        correctButton.addTarget(self, action: #selector(self.didTapIncorrectButton), for: .touchUpInside)
         
         //containerStackView
-        containerStackView = UIStackView.init(arrangedSubviews: [correctButton, incorrectButton])
+        containerStackView = UIStackView.init(arrangedSubviews: [inCorrectButton, correctButton])
         self.addSubview(containerStackView)
         containerStackView.spacing = K.padding.side
-        containerStackView.distribution = .fill
+        containerStackView.distribution = .fillEqually
         containerStackView.axis = .horizontal
-        containerStackView.fillSuperView(UIEdgeInsets.init(top: K.padding.side, left: K.padding.side, bottom: K.padding.side+30, right: K.padding.side))
+        containerStackView.fillSuperView(UIEdgeInsets.init(top: K.padding.side, left: K.padding.side, bottom: K.padding.side, right: K.padding.side))
     }
     
     @objc func didTapCorrectButton() {
