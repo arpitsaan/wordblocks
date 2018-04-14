@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class GameViewController: UIViewController, WBInputControlDelegate {
     
     var animator: UIDynamicAnimator!
@@ -21,9 +22,15 @@ class GameViewController: UIViewController, WBInputControlDelegate {
     var inputControl = WBInputControl()
     var scoreView = WBScoreView()
     
+    var didTouchOnce:Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = WBColor.textDarker
+        
+        //tap gesture
+        let tapGesture = UITapGestureRecognizer.init(target: self, action:#selector(didTapScreen))
+        self.view.addGestureRecognizer(tapGesture)
         
         //pause button
         pauseControl = WBPauseControl.init(frame: self.view.bounds)
@@ -79,8 +86,19 @@ class GameViewController: UIViewController, WBInputControlDelegate {
         return true;
     }
     
-    func resetPositions() {
-        self.animator.removeAllBehaviors()
+    func resetScreen() {
+        //reset screen
+        if(self.animator != nil) {
+            self.animator.removeAllBehaviors()
+        }
+        self.didTouchOnce = false
+        
+        self.view.backgroundColor = WBColor.textDarker
+        self.inputControl.alpha = 1
+        self.scoreView.alpha = 1
+        self.pauseControl.alpha = 1
+        self.livesView.transform = CGAffineTransform.init(scaleX: 1.0, y: 1.0)
+
         self.topWordView.transform = .identity
         self.bottomWordView.transform = .identity
         self.view.layoutIfNeeded()
@@ -88,12 +106,16 @@ class GameViewController: UIViewController, WBInputControlDelegate {
     
     func startAnimation() {
         //animation
+        let itemBehaviour = UIDynamicItemBehavior(items: [topWordView, bottomWordView])
+        itemBehaviour.elasticity = 0
+        
         animator = UIDynamicAnimator(referenceView: view)
         gravity = UIGravityBehavior(items: [topWordView])
         gravity.magnitude = 0.6
         animator.addBehavior(gravity)
         
         collision = UICollisionBehavior(items: [topWordView, bottomWordView])
+        collision.collisionDelegate = self
         collision.translatesReferenceBoundsIntoBoundary = true
         animator.addBehavior(collision)
     }
@@ -104,8 +126,52 @@ class GameViewController: UIViewController, WBInputControlDelegate {
     }
     
     func didTapIncorrectButton() {
-        self.resetPositions()
+        self.resetScreen()
         self.view.layoutIfNeeded()
+    }
+}
+
+extension GameViewController: UICollisionBehaviorDelegate {
+    func collisionBehavior(_ behavior: UICollisionBehavior, endedContactFor item1: UIDynamicItem, with item2: UIDynamicItem) {
+        if !self.didTouchOnce {
+            self.didTouchOnce = true
+            self.userIsWrong(delayed: true)
+        }
+    }
+}
+
+extension GameViewController {
+    func userIsWrong(delayed: Bool) {
+        
+        let remainingLives = CurrentGameManager.sharedInstance.reduceAndGetUpdatedLives()
+        let delay = delayed ? 0.3 : 0
+        
+        UIView.animate(withDuration: 0.1, delay: delay, usingSpringWithDamping: 0.9, initialSpringVelocity: 1.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
+            self.view.backgroundColor = WBColor.red
+            self.inputControl.alpha = 0
+            self.pauseControl.alpha = 0
+            self.scoreView.alpha = 0
+            self.livesView.transform = CGAffineTransform.init(scaleX: 2.0, y: 2.0)
+            self.livesView.setActiveLives(count: remainingLives)
+        })
+        
+        if remainingLives <= 0 {
+            //game over
+            let alertController = UIAlertController.init(title: "Game over!", message: "Continue to a new game...", preferredStyle: UIAlertControllerStyle.alert);
+            let action = UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler:nil)
+            alertController.addAction(action)
+            
+            self.present(alertController, animated: true, completion: {
+                self.resetScreen()
+                CurrentGameManager.sharedInstance.setRemainingLives(count: 3)
+                self.livesView.setActiveLives(count: CurrentGameManager.sharedInstance.getRemainingLives())
+            })
+            
+        }
+    }
+    
+    @objc func didTapScreen() {
+        self.resetScreen()
     }
 }
 

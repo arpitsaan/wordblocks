@@ -69,4 +69,8 @@ extension CurrentGameManager {
     func increaseTurnCount() {
         turnCount = turnCount + 1
     }
+    
+    func setRemainingLives(count: Int) {
+        remainingLives = count
+    }
 }

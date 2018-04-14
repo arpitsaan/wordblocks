@@ -32,13 +32,29 @@ class WBLivesView: UIView {
         containerStackView.spacing = K.padding.side
         containerStackView.distribution = .fill
         containerStackView.axis = .horizontal
-        
-        //set 1 life inactive
-        lifeView1.setInactive()
     }
 
     //misc
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    //setters
+    func setActiveLives(count: Int) {
+        self.lifeView3.setActive()
+        self.lifeView2.setActive()
+        self.lifeView1.setActive()
+        
+        if count<3 {
+            self.lifeView1.setInactive()
+        }
+        
+        if count<2 {
+            self.lifeView2.setInactive()
+        }
+        
+        if count<1 {
+            self.lifeView3.setInactive()
+        }
     }
 }
