@@ -17,7 +17,6 @@ class GameViewController: UIViewController, WBInputControlDelegate {
     var currentState: WBGameState!
     
     var containerView = UIView()
-    var pauseControl = WBPauseControl()
     var livesView = WBLivesView()
     var topWordView = WBWordView()
     var bottomWordView = WBWordView()
@@ -74,12 +73,6 @@ extension GameViewController {
         //tap gesture
         let tapGesture = UITapGestureRecognizer.init(target: self, action:#selector(didTapScreen))
         containerView.addGestureRecognizer(tapGesture)
-        
-        //pause button
-        pauseControl = WBPauseControl.init(frame: self.view.bounds)
-        containerView.addSubview(pauseControl)
-        pauseControl.addLeadingConstraint(toView: containerView, constant: K.padding.side)
-        pauseControl.addTopConstraint(toView: containerView, constant: K.padding.side)
         
         //lives view
         livesView = WBLivesView()
@@ -183,7 +176,6 @@ extension GameViewController {
     //welcome
     //start
     //active
-    //pause
     //won
     //lost
     //gameover
@@ -198,9 +190,6 @@ extension GameViewController {
             
             case .active:
                 resumeTurn()
-            
-            case .pause:
-                pauseGame()
             
             case .won:
                 showWonView()
@@ -255,17 +244,11 @@ extension GameViewController {
         startTurn()
     }
     
-    //pause
-    func pauseGame() {
-        
-    }
-    
     //won
     func showWonView() {
         UIView.animate(withDuration: 0.1, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 1.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
             self.view.backgroundColor = WBColor.green
             self.inputControl.alpha = 0
-            self.pauseControl.alpha = 0
             self.scoreView.transform = CGAffineTransform.init(scaleX: 2.0, y: 2.0)
             self.livesView.alpha = 0
             self.livesView.setActiveLives(count: WBGameManager.currentTurn.activeLives)
@@ -279,7 +262,6 @@ extension GameViewController {
         UIView.animate(withDuration: 0.1, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 1.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
             self.view.backgroundColor = WBColor.red
             self.inputControl.alpha = 0
-            self.pauseControl.alpha = 0
             self.scoreView.alpha = 0
             self.livesView.transform = CGAffineTransform.init(scaleX: 2.0, y: 2.0)
             self.livesView.setActiveLives(count: WBGameManager.currentTurn.activeLives)
@@ -309,7 +291,6 @@ extension GameViewController {
         self.view.backgroundColor = WBColor.textDarker
         self.inputControl.alpha = 1
         self.scoreView.alpha = 1
-        self.pauseControl.alpha = 1
         self.livesView.transform = CGAffineTransform.init(scaleX: 1.0, y: 1.0)
         
         self.topWordView.topAnchor.constraint(equalTo: self.topWordView.topAnchor, constant: 0).isActive = true

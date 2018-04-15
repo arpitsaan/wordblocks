@@ -10,21 +10,18 @@ import UIKit
 
 enum WBUserAction {
     case tapStart
-    case tapPause
     case tapResume
     case tapRestart
     case tapTick
     case tapCross
     case tapScreen
     case collision
-    case exitGame
 }
 
 enum WBGameState {
     case welcome
     case start
     case active
-    case pause
     case won
     case lost
     case gameover
@@ -87,9 +84,6 @@ class WBGameManager: NSObject {
         case .tapStart:
             nextTurn.gameState = .start
             
-        case .tapPause:
-            nextTurn.gameState = .pause
-        
         case .tapResume:
             nextTurn.gameState = .active
         
@@ -128,8 +122,6 @@ class WBGameManager: NSObject {
             if currentTurn.gameState == .won || currentTurn.gameState == .lost {
                 nextTurn.gameState = .active
             }
-            
-        case .exitGame: nextTurn.gameState = .pause
         }
         
         //game over
