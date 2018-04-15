@@ -53,5 +53,6 @@ class WBWordView: UIView {
     
     func setWordData(wordData:String) {
         self.wordLabel.text = String.init(format: "%@", wordData)
+        self.layoutIfNeeded()
     }
 }

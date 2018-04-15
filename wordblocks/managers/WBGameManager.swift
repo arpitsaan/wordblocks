@@ -80,32 +80,74 @@ class WBGameManager: NSObject {
     public static func updateTurn(action:WBUserAction) {
         
         var nextTurn = currentTurn
-        
+        var shouldChangeWord = false
         switch action {
-        case .tapStart: nextTurn.gameState = .start
+        case .tapStart:
+            nextTurn.gameState = .start
             
-        case .tapPause: nextTurn.gameState = .pause
-            
-        case .tapResume: nextTurn.gameState = .active
-            
+        case .tapPause:
+            nextTurn.gameState = .pause
+        
+        case .tapResume:
+            nextTurn.gameState = .active
+        
         case .tapRestart:
+            shouldChangeWord = true
             nextTurn.gameState = .welcome
             
         case .collision:
+            shouldChangeWord = true
             nextTurn.gameState = .lost
+            nextTurn.activeLives -= 1
             
-        case .tapTick: break
+        case .tapTick:
+            if(WBGameManager.currentTurn.turnWord.isMatching) {
+                nextTurn.score += 10
+                nextTurn.gameState = .won
+            }
+            else {
+                nextTurn.activeLives -= 1
+                nextTurn.gameState = .lost
+            }
+            shouldChangeWord = true
             
-        case .tapCross: break
+            
+        case .tapCross:
+            if(WBGameManager.currentTurn.turnWord.isMatching) {
+                nextTurn.gameState = .lost
+                nextTurn.activeLives -= 1
+            }
+            else {
+                nextTurn.gameState = .won
+            }
+            shouldChangeWord = true
             
         case .tapScreen:
             if currentTurn.gameState == .won || currentTurn.gameState == .lost {
                 nextTurn.gameState = .active
             }
             
-        case .exitGame: break
+        case .exitGame: nextTurn.gameState = .pause
         }
         
+        //game over
+        if(nextTurn.gameState == .lost) {
+            if (nextTurn.activeLives <= 0) {
+                nextTurn.gameState = .gameover
+            }
+        }
+        
+        //new word
+        if (shouldChangeWord) {
+            if(nextTurn.gameState == .won) {
+//                if let index = WBGameManager.remainingWords.index(of: WBGameManager.currentTurn.turnWord.bottomWord) {
+//                    WBGameManager.remainingWords.remove(at: index)
+//                }
+            }
+            WBGameManager.currentTurn.turnWord = WBGameManager.getRandomTurnWord()
+        }
+        
+        //did change state
         let didChangeState = currentTurn.gameState != nextTurn.gameState
         currentTurn = nextTurn
         

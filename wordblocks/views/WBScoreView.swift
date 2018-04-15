@@ -39,7 +39,6 @@ class WBScoreView: UIView {
         topScoreBgView = UIView()
         topScoreBgView.backgroundColor = WBColor.green
         topScoreBgView.addStaticHeightConstraint(constant: 18)
-        topScoreBgView.addStaticWidthConstraint(constant: 52)
         topScoreBgView.layer.cornerRadius = 2.0
         topScoreBgView.clipsToBounds = true
         

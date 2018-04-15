@@ -97,14 +97,12 @@ extension GameViewController {
         
         //top word
         topWordView = WBWordView.init()
-        topWordView.setWordData(wordData: "headteacher")
         containerView.addSubview(topWordView)
         topWordView.addCenterXConstraint(toView: containerView)
-        topWordView.addTopConstraint(toView: containerView, constant: 50)
+        topWordView.addTopConstraint(toView: containerView, constant:0)
         
         //bottom word
         bottomWordView = WBWordView.init()
-        bottomWordView.setWordData(wordData: "director del colegio")
         containerView.addSubview(bottomWordView)
         bottomWordView.addCenterXConstraint(toView: containerView)
         bottomWordView.addBottomConstraint(toView: containerView, constant: -200)
@@ -182,13 +180,13 @@ extension GameViewController {
 //------------------------
 extension GameViewController {
     
-//    case welcome
-//    case start
-//    case active
-//    case pause
-//    case won
-//    case lost
-//    case gameover
+    //welcome
+    //start
+    //active
+    //pause
+    //won
+    //lost
+    //gameover
     
     func updateViewState() {
         switch WBGameManager.currentTurn.gameState {
@@ -229,8 +227,8 @@ extension GameViewController {
             Tap ✅ if words mean the same
             Tap ❌ if they mean different
             
-            👏 Get points for every correct answer
-            💔 Lose a life for every error
+            👏 Score points with correct answer!
+            💔 You'll lose a life for every error
             
             ---------------------------------
             HIGHSCORE : 🏆 \(WBGameManager.highScore)
@@ -264,7 +262,16 @@ extension GameViewController {
     
     //won
     func showWonView() {
-        
+        UIView.animate(withDuration: 0.1, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 1.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
+            self.view.backgroundColor = WBColor.green
+            self.inputControl.alpha = 0
+            self.pauseControl.alpha = 0
+            self.scoreView.transform = CGAffineTransform.init(scaleX: 2.0, y: 2.0)
+            self.livesView.alpha = 0
+            self.livesView.setActiveLives(count: WBGameManager.currentTurn.activeLives)
+            self.scoreView.setTopScore(topScore: WBGameManager.highScore)
+            self.scoreView.setCurrentScore(currentScore: WBGameManager.currentTurn.score)
+        })
     }
     
     //lost
@@ -277,23 +284,17 @@ extension GameViewController {
             self.livesView.transform = CGAffineTransform.init(scaleX: 2.0, y: 2.0)
             self.livesView.setActiveLives(count: WBGameManager.currentTurn.activeLives)
         })
-        //        if remainingLives <= 0 {
-        //            //game over
-        //            let alertController = UIAlertController.init(title: "Game over!", message: "Continue to a new game...", preferredStyle: UIAlertControllerStyle.alert);
-        //            let action = UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler:nil)
-        //            alertController.addAction(action)
-        //
-        //            self.present(alertController, animated: true, completion: {
-        //                self.resetScreen()
-        //                //                CurrentTurnManager.sharedInstance.setRemainingLives(count: 3) //asdf reducer
-        //                self.livesView.setActiveLives(count:WBGameManager.currentTurn.activeLives)
-        //            })
-        //        }
     }
     
     //gameover
     func gameOver() {
         
+        let alertController = UIAlertController.init(title: "Game over!", message: "Continue to a new game...", preferredStyle: UIAlertControllerStyle.alert);
+        let action = UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler:nil)
+        alertController.addAction(action)
+        
+        self.present(alertController, animated: true, completion: {
+        })
     }
     
     //reset
@@ -311,8 +312,11 @@ extension GameViewController {
         self.pauseControl.alpha = 1
         self.livesView.transform = CGAffineTransform.init(scaleX: 1.0, y: 1.0)
         
+        self.topWordView.topAnchor.constraint(equalTo: self.topWordView.topAnchor, constant: 0).isActive = true
+        self.bottomWordView.bottomAnchor.constraint(equalTo: self.bottomWordView.bottomAnchor, constant: -200).isActive = true
         self.topWordView.transform = .identity
         self.bottomWordView.transform = .identity
+        
         self.view.layoutIfNeeded()
     }
 }
