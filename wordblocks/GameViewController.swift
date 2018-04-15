@@ -24,6 +24,8 @@ class GameViewController: UIViewController, WBInputControlDelegate {
     var bottomWordView = WBWordView()
     var inputControl = WBInputControl()
     var scoreView = WBScoreView()
+    var continueLabel = UILabel()
+    var announceLabel = UILabel()
     
     var didCollideOnce:Bool = false
     var disableCollideAction:Bool = true
@@ -80,16 +82,28 @@ extension GameViewController {
         let tapGesture = UITapGestureRecognizer.init(target: self, action:#selector(didTapScreen))
         containerView.addGestureRecognizer(tapGesture)
         
+        //continue label
+        continueLabel = UILabel.init()
+        containerView.addSubview(continueLabel)
+        continueLabel.font = UIFont(name: "DINAlternate-Bold", size: 20)
+        continueLabel.textColor = WBColor.bgDark
+        continueLabel.addCenterXConstraint(toView: containerView)
+        continueLabel.addCenterYConstraint(toView: containerView)
+        continueLabel.text = "👆Tap anywhere to continue"
+        continueLabel.alpha = 0
+        
         //lives view
         livesView = WBLivesView()
         containerView.addSubview(livesView)
-        self.livesView.addCenterXConstraint(toView: containerView)
-        self.livesView.addTopConstraint(toView: containerView, constant:K.padding.side+10.0)
+        livesView.layer.anchorPoint = CGPoint.init(x: 1.0, y: 0)
+        self.livesView.addTrailingConstraint(toView: containerView, constant:0)
+        self.livesView.addTopConstraint(toView: containerView, constant:K.padding.side*2.5)
         
         //score card view
         scoreView = WBScoreView()
         containerView.addSubview(scoreView)
-        scoreView.addTrailingConstraint(toView: containerView, constant:-K.padding.side)
+        scoreView.layer.anchorPoint = CGPoint.init(x: 0, y: 0)
+        scoreView.addLeadingConstraint(toView: containerView, constant:K.padding.side)
         scoreView.addTopConstraint(toView: containerView, constant:K.padding.side)
         scoreView.setTopScore(topScore: 140)
         scoreView.setCurrentScore(currentScore: 77)
@@ -157,12 +171,11 @@ extension GameViewController: UICollisionBehaviorDelegate {
         
         //animation
         let itemBehaviour = UIDynamicItemBehavior(items: [topWordView, bottomWordView])
-        itemBehaviour.density = 0.5
-        itemBehaviour.resistance = 0.3
+        itemBehaviour.allowsRotation = true
         
         animator = UIDynamicAnimator(referenceView: view)
         gravity = UIGravityBehavior(items: [topWordView])
-        gravity.magnitude = CGFloat(Double(Manager.currentTurn.gravityPercent)/160.0)
+        gravity.magnitude = CGFloat(Double(Manager.currentTurn.gravityPercent)/80.0)
         
         animator.addBehavior(gravity)
         
@@ -172,7 +185,13 @@ extension GameViewController: UICollisionBehaviorDelegate {
         animator.addBehavior(collision)
     }
     
-    func collisionBehavior(_ behavior: UICollisionBehavior, endedContactFor item1: UIDynamicItem, with item2: UIDynamicItem) {
+    func collisionBehavior(_ behavior: UICollisionBehavior, endedContactFor item: UIDynamicItem, withBoundaryIdentifier identifier: NSCopying?) {
+//
+//    }
+//    func collisionBehavior(_ behavior: UICollisionBehavior, endedContactFor item1: UIDynamicItem, with item2: UIDynamicItem) {
+        
+    print("[WB] Collision!")
+
         if !self.didCollideOnce {
             self.didCollideOnce = true
             if self.disableCollideAction == false {
@@ -249,6 +268,7 @@ extension GameViewController {
     
     //welcome
     func welcomeUser() {
+        self.continueLabel.alpha = 0
         disableCollideAction = false
         didCollideOnce = false
         
@@ -294,24 +314,33 @@ extension GameViewController {
     
     //won
     func handleWinState() {
-        //FIXME: Stop Collision
         self.disableCollideAction = true
-        UIView.animate(withDuration: 0.1) {
+        
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.1, options: .allowUserInteraction, animations: {
+            
             self.view.backgroundColor = WBColor.green
             self.inputControl.alpha = 0
+            self.continueLabel.alpha = 1
             self.scoreView.setTopScore(topScore: Manager.highScore)
             self.scoreView.setCurrentScore(currentScore: Manager.currentTurn.score)
+            self.livesView.alpha = 0
+            self.scoreView.transform = CGAffineTransform.init(scaleX: 4.5, y: 4.5)
+        }) { (true) in
+            print("[WB] Win state animation completed")
         }
     }
     
     //lost
     func handleLoseState() {
         self.disableCollideAction = true
-        UIView.animate(withDuration: 0.1) {
+        UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.1, options: .allowUserInteraction, animations: {
             self.view.backgroundColor = WBColor.red
             self.inputControl.alpha = 0
             self.scoreView.alpha = 0
-            self.livesView.transform = CGAffineTransform.init(scaleX: 2.0, y: 2.0)
+            self.continueLabel.alpha = 1
+            self.livesView.transform = CGAffineTransform.init(scaleX: 2.5, y: 2.5)
+        }) { (true) in
+            print("[WB] Lose state animation completed")
         }
     }
     
@@ -378,14 +407,16 @@ extension GameViewController {
         if(self.animator != nil) {
             self.animator.removeAllBehaviors()
         }
-        
+        self.continueLabel.alpha = 0
         self.didCollideOnce = false
         self.disableCollideAction = false
         
         self.view.backgroundColor = getBGColor()
         self.inputControl.alpha = 1
+        self.livesView.alpha = 1
         self.scoreView.alpha = 1
         self.livesView.transform = CGAffineTransform.init(scaleX: 1.0, y: 1.0)
+        self.scoreView.transform = CGAffineTransform.init(scaleX: 1.0, y: 1.0)
         
         self.topWordView.topAnchor.constraint(equalTo: self.topWordView.topAnchor, constant: 0).isActive = true
         self.bottomWordView.bottomAnchor.constraint(equalTo: self.bottomWordView.bottomAnchor, constant: -200).isActive = true
