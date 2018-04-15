@@ -41,7 +41,7 @@ struct WBTurn {
     init(score:Int = 0,
         activeLives:Int = 3,
         turnWord:WBTurnWord? = WBTurnWord.init(),
-        gravityPercent:Int = 5,
+        gravityPercent:Int = 1,
         gameState:WBGameState = .welcome
         ) {
         

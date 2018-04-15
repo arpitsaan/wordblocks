@@ -53,7 +53,7 @@ class Manager: NSObject {
             score: 0,
             activeLives: 3,
             turnWord:getRandomTurnWord(),
-            gravityPercent: 5,
+            gravityPercent: 1,
             gameState: .welcome)
         
         //notification broadcast
@@ -103,7 +103,7 @@ class Manager: NSObject {
                 score: 0,
                 activeLives: 3,
                 turnWord:getRandomTurnWord(),
-                gravityPercent: 5,
+                gravityPercent: 1,
                 gameState: .welcome)
             nextTurn = currentTurn
 

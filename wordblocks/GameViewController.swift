@@ -162,7 +162,7 @@ extension GameViewController: UICollisionBehaviorDelegate {
         
         animator = UIDynamicAnimator(referenceView: view)
         gravity = UIGravityBehavior(items: [topWordView])
-        gravity.magnitude = CGFloat(Double(Manager.currentTurn.gravityPercent)/100.0)
+        gravity.magnitude = CGFloat(Double(Manager.currentTurn.gravityPercent)/150.0)
         
         animator.addBehavior(gravity)
         
