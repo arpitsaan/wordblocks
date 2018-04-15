@@ -16,6 +16,7 @@ class GameViewController: UIViewController, WBInputControlDelegate {
     var collision: UICollisionBehavior!
     var currentState: WBGameState!
     
+    var containerView = UIView()
     var pauseControl = WBPauseControl()
     var livesView = WBLivesView()
     var topWordView = WBWordView()
@@ -33,7 +34,6 @@ class GameViewController: UIViewController, WBInputControlDelegate {
     @objc func gameStateUpdated(notification: NSNotification){
         self.updateViewState()
     }
-
 }
 
 
@@ -46,6 +46,10 @@ extension GameViewController {
         super.viewDidLoad()
         self.registerForNotifications()
         self.createView()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         WBGameManager.beginGame()
     }
 
@@ -62,51 +66,56 @@ extension GameViewController {
     }
 
     func createView() {
+        //container view
+        containerView = UIView.init()
+        self.view.addSubview(containerView)
+        containerView.fillSuperView()
+        
         //tap gesture
         let tapGesture = UITapGestureRecognizer.init(target: self, action:#selector(didTapScreen))
-        self.view.addGestureRecognizer(tapGesture)
+        containerView.addGestureRecognizer(tapGesture)
         
         //pause button
         pauseControl = WBPauseControl.init(frame: self.view.bounds)
-        self.view.addSubview(pauseControl)
-        pauseControl.addLeadingConstraint(toView: self.view, constant: K.padding.side)
-        pauseControl.addTopConstraint(toView: self.view, constant: K.padding.side)
+        containerView.addSubview(pauseControl)
+        pauseControl.addLeadingConstraint(toView: containerView, constant: K.padding.side)
+        pauseControl.addTopConstraint(toView: containerView, constant: K.padding.side)
         
         //lives view
         livesView = WBLivesView()
-        self.view.addSubview(livesView)
-        self.livesView.addCenterXConstraint(toView: self.view)
-        self.livesView.addTopConstraint(toView: self.view, constant:K.padding.side+10.0)
+        containerView.addSubview(livesView)
+        self.livesView.addCenterXConstraint(toView: containerView)
+        self.livesView.addTopConstraint(toView: containerView, constant:K.padding.side+10.0)
         
         //score card view
         scoreView = WBScoreView()
-        self.view.addSubview(scoreView)
-        scoreView.addTrailingConstraint(toView: self.view, constant:-K.padding.side)
-        scoreView.addTopConstraint(toView: self.view, constant:K.padding.side)
+        containerView.addSubview(scoreView)
+        scoreView.addTrailingConstraint(toView: containerView, constant:-K.padding.side)
+        scoreView.addTopConstraint(toView: containerView, constant:K.padding.side)
         scoreView.setTopScore(topScore: 140)
         scoreView.setCurrentScore(currentScore: 77)
-        
-        //input controls view
-        inputControl = WBInputControl()
-        inputControl.delegate = self
-        self.view.addSubview(inputControl)
-        self.inputControl.addLeadingConstraint(toView: self.view)
-        self.inputControl.addTrailingConstraint(toView: self.view)
-        self.inputControl.addBottomConstraint(toView: self.view)
         
         //top word
         topWordView = WBWordView.init()
         topWordView.setWordData(wordData: "headteacher")
-        self.view.addSubview(topWordView)
-        topWordView.addCenterXConstraint(toView: self.view)
-        topWordView.addTopConstraint(toView: self.view, constant: 50)
+        containerView.addSubview(topWordView)
+        topWordView.addCenterXConstraint(toView: containerView)
+        topWordView.addTopConstraint(toView: containerView, constant: 50)
         
         //bottom word
         bottomWordView = WBWordView.init()
         bottomWordView.setWordData(wordData: "director del colegio")
-        self.view.addSubview(bottomWordView)
-        bottomWordView.addCenterXConstraint(toView: self.view)
-        bottomWordView.addBottomConstraint(toView: self.view, constant: -200)
+        containerView.addSubview(bottomWordView)
+        bottomWordView.addCenterXConstraint(toView: containerView)
+        bottomWordView.addBottomConstraint(toView: containerView, constant: -200)
+        
+        //input controls view
+        inputControl = WBInputControl()
+        inputControl.delegate = self
+        containerView.addSubview(inputControl)
+        self.inputControl.addLeadingConstraint(toView: containerView)
+        self.inputControl.addTrailingConstraint(toView: containerView)
+        self.inputControl.addBottomConstraint(toView: containerView)
         
         //update layout
         self.view.layoutIfNeeded()
@@ -120,6 +129,7 @@ extension GameViewController {
 extension GameViewController: UICollisionBehaviorDelegate {
     
     func startTurn() {
+        self.containerView.alpha = 1.0
         
         //animation
         let itemBehaviour = UIDynamicItemBehavior(items: [topWordView, bottomWordView])
@@ -203,7 +213,35 @@ extension GameViewController {
     
     //welcome
     func welcomeUser() {
+        self.containerView.alpha = 0.1
         
+        let alertController = UIAlertController.init(
+            title: "Welcome to Word Blocks!",
+            message: """
+            You will see a word, and a word in another language will start falling
+            
+            💥 Answer before they collide
+            
+            Tap ✅ if words mean the same
+            Tap ❌ if they mean different
+            
+            ---------------------------------
+            LIVES : 💖 X 3
+            HIGHSCORE : 🏆 \(WBGameManager.highScore)
+            ---------------------------------
+            
+            👊 Keep beating your HIGHSCORE!
+            """,
+            preferredStyle: .alert);
+        
+        let action = UIAlertAction(title: "🏁 Start Playing 🏁",
+                                   style: .default,
+                                   handler: {(alert: UIAlertAction!) in WBGameManager.updateTurn(action: .tapStart)})
+        
+        alertController.addAction(action)
+        
+        self.present(alertController, animated: true, completion: {
+        })
     }
     
     //resume
