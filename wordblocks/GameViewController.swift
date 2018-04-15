@@ -85,20 +85,20 @@ extension GameViewController {
         //win label
         winLabel = UILabel.init()
         containerView.addSubview(winLabel)
-        winLabel.font = UIFont(name: "DINAlternate-Bold", size: 24)
+        winLabel.font = UIFont(name: "DINAlternate-Bold", size: 20)
         winLabel.textColor = WBColor.bgDark
         winLabel.addCenterXConstraint(toView: containerView)
-        winLabel.addCenterYConstraint(toView: containerView)
+        winLabel.addCenterYConstraint(toView: containerView, constant: -50)
         winLabel.text = "🙌 CORRECT · Tap to continue…"
         winLabel.alpha = 0
         
         //lose label
         loseLabel = UILabel.init()
         containerView.addSubview(loseLabel)
-        loseLabel.font = UIFont(name: "DINAlternate-Bold", size: 24)
+        loseLabel.font = UIFont(name: "DINAlternate-Bold", size: 20)
         loseLabel.textColor = WBColor.bgDark
         loseLabel.addCenterXConstraint(toView: containerView)
-        loseLabel.addCenterYConstraint(toView: containerView)
+        loseLabel.addCenterYConstraint(toView: containerView, constant: -50)
         loseLabel.text = "💔 INCORRECT · Tap to continue…"
         loseLabel.alpha = 0
         
@@ -106,7 +106,7 @@ extension GameViewController {
         livesView = WBLivesView()
         containerView.addSubview(livesView)
         livesView.layer.anchorPoint = CGPoint.init(x: 1.0, y: 0)
-        self.livesView.addTrailingConstraint(toView: containerView, constant:0)
+        self.livesView.addTrailingConstraint(toView: containerView, constant:-K.padding.side)
         self.livesView.addTopConstraint(toView: containerView, constant:K.padding.side*2.5)
         
         //score card view
@@ -328,7 +328,7 @@ extension GameViewController {
     func handleWinState() {
         self.disableCollideAction = true
         self.loseLabel.alpha = 0
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.1, options: .allowUserInteraction, animations: {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.1, options: .allowUserInteraction, animations: {
             
             self.view.backgroundColor = WBColor.green
             self.inputControl.alpha = 0
@@ -336,7 +336,7 @@ extension GameViewController {
             self.scoreView.setTopScore(topScore: Manager.highScore)
             self.scoreView.setCurrentScore(currentScore: Manager.currentTurn.score)
             self.livesView.alpha = 0
-            self.scoreView.transform = CGAffineTransform.init(scaleX: 4.5, y: 4.5)
+            self.scoreView.transform = CGAffineTransform.init(scaleX: 4, y: 4)
         }) { (true) in
             print("[WB] Win state animation completed")
         }
