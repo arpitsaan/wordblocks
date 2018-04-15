@@ -10,6 +10,7 @@ import UIKit
 
 class GameViewController: UIViewController, WBInputControlDelegate {
     
+    //properties
     var animator: UIDynamicAnimator!
     var gravity: UIGravityBehavior!
     var collision: UICollisionBehavior!
@@ -22,12 +23,45 @@ class GameViewController: UIViewController, WBInputControlDelegate {
     var inputControl = WBInputControl()
     var scoreView = WBScoreView()
     
-    var didTouchOnce:Bool = false
+    var didCollideOnce:Bool = false
+    
+    //selectors
+    @objc func didTapScreen() {
+        self.userDidTapScreen()
+    }
+    
+    @objc func gameStateUpdated(notification: NSNotification){
+        self.updateViewState()
+    }
+
+}
+
+
+//-------------------------------
+// MARK:  View Lifecycle + UI
+//-------------------------------
+extension GameViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = WBColor.textDarker
-        
+        self.registerForNotifications()
+        self.createView()
+        WBGameManager.beginGame()
+    }
+
+    override var prefersStatusBarHidden: Bool {
+        return true;
+    }
+    
+    func registerForNotifications() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(self.gameStateUpdated),
+            name: .gameManager,
+            object: nil)
+    }
+
+    func createView() {
         //tap gesture
         let tapGesture = UITapGestureRecognizer.init(target: self, action:#selector(didTapScreen))
         self.view.addGestureRecognizer(tapGesture)
@@ -74,37 +108,19 @@ class GameViewController: UIViewController, WBInputControlDelegate {
         bottomWordView.addCenterXConstraint(toView: self.view)
         bottomWordView.addBottomConstraint(toView: self.view, constant: -200)
         
+        //update layout
         self.view.layoutIfNeeded()
     }
+}
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
-    override var prefersStatusBarHidden: Bool {
-        return true;
-    }
+//-------------------------------
+// MARK:  Animation and Physics
+//-------------------------------
+extension GameViewController: UICollisionBehaviorDelegate {
     
-    func resetScreen() {
-        //reset screen
-        if(self.animator != nil) {
-            self.animator.removeAllBehaviors()
-        }
-        self.didTouchOnce = false
+    func startTurn() {
         
-        self.view.backgroundColor = WBColor.textDarker
-        self.inputControl.alpha = 1
-        self.scoreView.alpha = 1
-        self.pauseControl.alpha = 1
-        self.livesView.transform = CGAffineTransform.init(scaleX: 1.0, y: 1.0)
-
-        self.topWordView.transform = .identity
-        self.bottomWordView.transform = .identity
-        self.view.layoutIfNeeded()
-    }
-    
-    func startGame() {
         //animation
         let itemBehaviour = UIDynamicItemBehavior(items: [topWordView, bottomWordView])
         itemBehaviour.elasticity = 0.1
@@ -120,58 +136,146 @@ class GameViewController: UIViewController, WBInputControlDelegate {
         animator.addBehavior(collision)
     }
     
-    //inputs
-    func didTapCorrectButton() {
-        self.startGame()
-    }
-    
-    func didTapIncorrectButton() {
-        self.resetScreen()
-        self.view.layoutIfNeeded()
-    }
-}
-
-extension GameViewController: UICollisionBehaviorDelegate {
     func collisionBehavior(_ behavior: UICollisionBehavior, endedContactFor item1: UIDynamicItem, with item2: UIDynamicItem) {
-        if !self.didTouchOnce {
-            self.didTouchOnce = true
-            self.userIsWrong(byCollision: true)
+        if !self.didCollideOnce {
+            self.didCollideOnce = true
+            //            self.userIsWrong(byCollision: true) //asdf
         }
     }
 }
 
+//---------------------
+// MARK: User Actions
+//---------------------
 extension GameViewController {
-    func userIsWrong(byCollision: Bool) {
+    
+    func userDidTapScreen() {
+        WBGameManager.updateTurn(action: .tapScreen)
+    }
+    
+    func didTapCorrectButton() {
+        WBGameManager.updateTurn(action: .tapTick)
+    }
+    
+    func didTapIncorrectButton() {
+        WBGameManager.updateTurn(action: .tapCross)
+    }
+    
+}
+
+//------------------------
+// MARK: State Handlers
+//------------------------
+extension GameViewController {
+    
+//    case welcome
+//    case start
+//    case active
+//    case pause
+//    case won
+//    case lost
+//    case gameover
+    
+    func updateViewState() {
+        switch WBGameManager.currentTurn.gameState {
+            case .welcome:
+                welcomeUser()
+            
+            case .start:
+                startTurn()
+            
+            case .active:
+                resumeTurn()
+            
+            case .pause:
+                pauseGame()
+            
+            case .won:
+                showWonView()
+            
+            case .lost:
+                showLostView()
+            
+            case .gameover:
+                gameOver()
+        }
+    }
+    
+    //welcome
+    func welcomeUser() {
         
-//        let remainingLives = CurrentTurnManager.sharedInstance.reduceAndGetUpdatedLives()
-//        let delay = delayed ? 0 : 0
+    }
+    
+    //resume
+    func resumeTurn() {
+    }
+    
+    //pause
+    func pauseGame() {
         
+    }
+    
+    //won
+    func showWonView() {
+        
+    }
+    
+    //lost
+    func showLostView() {
         UIView.animate(withDuration: 0.1, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 1.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
             self.view.backgroundColor = WBColor.red
             self.inputControl.alpha = 0
             self.pauseControl.alpha = 0
             self.scoreView.alpha = 0
             self.livesView.transform = CGAffineTransform.init(scaleX: 2.0, y: 2.0)
-            self.livesView.setActiveLives(count: remainingLives)
+            self.livesView.setActiveLives(count: WBGameManager.currentTurn.activeLives)
         })
-        
-        if remainingLives <= 0 {
-            //game over
-            let alertController = UIAlertController.init(title: "Game over!", message: "Continue to a new game...", preferredStyle: UIAlertControllerStyle.alert);
-            let action = UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler:nil)
-            alertController.addAction(action)
-            
-            self.present(alertController, animated: true, completion: {
-                self.resetScreen()
-                CurrentTurnManager.sharedInstance.setRemainingLives(count: 3)
-                self.livesView.setActiveLives(count: CurrentTurnManager.sharedInstance.getRemainingLives())
-            })
-            
-        }
+        //        if remainingLives <= 0 {
+        //            //game over
+        //            let alertController = UIAlertController.init(title: "Game over!", message: "Continue to a new game...", preferredStyle: UIAlertControllerStyle.alert);
+        //            let action = UIAlertAction.init(title: "OK", style: UIAlertActionStyle.default, handler:nil)
+        //            alertController.addAction(action)
+        //
+        //            self.present(alertController, animated: true, completion: {
+        //                self.resetScreen()
+        //                //                CurrentTurnManager.sharedInstance.setRemainingLives(count: 3) //asdf reducer
+        //                self.livesView.setActiveLives(count:WBGameManager.currentTurn.activeLives)
+        //            })
+        //        }
     }
     
-    @objc func didTapScreen() {
-        self.resetScreen()
+    //gameover
+    func gameOver() {
+        
+    }
+    
+    //reset
+    func resetTurn() {
+        
+        if(self.animator != nil) {
+            self.animator.removeAllBehaviors()
+        }
+        self.didCollideOnce = false
+        
+        self.view.backgroundColor = WBColor.textDarker
+        self.inputControl.alpha = 1
+        self.scoreView.alpha = 1
+        self.pauseControl.alpha = 1
+        self.livesView.transform = CGAffineTransform.init(scaleX: 1.0, y: 1.0)
+        
+        self.topWordView.transform = .identity
+        self.bottomWordView.transform = .identity
+        self.view.layoutIfNeeded()
+    }
+}
+
+
+//---------------------
+// MARK: Misc
+//---------------------
+extension GameViewController {
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
 }
 

@@ -7,18 +7,53 @@
 //
 
 struct WBTurnWord {
+    var topWordText:String
+    var bottomWordText:String
+    
     var topWord:WBWord
     var bottomWord:WBWord
-    var isMatching:Bool = false
+    
+    var isMatching:Bool
+    
+    init(topWord:WBWord = WBWord.init(),
+         bottomWord:WBWord = WBWord.init(),
+         isMatching:Bool = false) {
+        self.topWord = topWord
+        self.bottomWord = bottomWord
+        self.isMatching = isMatching
+        
+        self.topWordText = topWord.en
+        self.bottomWordText = bottomWord.es
+    }
 }
 
 struct WBTurn {
-    var score:Int = 0
-    var activeLives:Int = 3
+    var score:Int
+    var activeLives:Int
     var turnWord:WBTurnWord
-    var turnIndex:Int = 0
-    var correctAnsCount:Int = 0
-    var correctMatchedAnsCount:Int = 0
-    var currentStreak:Int = 0
+//    var turnIndex:Int
+//    var correctAnsCount:Int
+//    var correctMatchedAnsCount:Int
+//    var currentStreak:Int
     var gameState:WBGameState
+    
+    init(score:Int = 0,
+        activeLives:Int = 3,
+        turnWord:WBTurnWord? = nil,
+//        turnIndex:Int = 0,
+//        correctAnsCount:Int = 0,
+//        correctMatchedAnsCount:Int = 0,
+//        currentStreak:Int = 0,
+        gameState:WBGameState = .welcome
+        ) {
+        
+        self.score = score
+        self.activeLives = activeLives
+        self.turnWord = turnWord!
+//        self.turnIndex = turnIndex
+//        self.correctAnsCount = correctAnsCount
+//        self.correctMatchedAnsCount = correctMatchedAnsCount
+//        self.currentStreak = currentStreak
+        self.gameState = gameState
+    }
 }

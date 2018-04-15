@@ -6,7 +6,14 @@
 //  Copyright © 2018 acyooman. All rights reserved.
 //
 
-struct WBGameConfig {
-    let gravityMultiplier = 1.1
-    let matchedProbability = 0.33
+enum WBGameConfig {
+    case gravityFactor
+    case matchingBias
+    
+    var value: Double {
+        switch self {
+            case .gravityFactor: return 1.1
+            case .matchingBias: return 0.33
+        }
+    }
 }

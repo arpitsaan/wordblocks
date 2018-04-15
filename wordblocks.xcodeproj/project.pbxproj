@@ -27,6 +27,7 @@
 		E87FE5AB2082A90500578474 /* WBTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87FE5AA2082A90500578474 /* WBTurn.swift */; };
 		E87FE5AD2082AACC00578474 /* WBWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87FE5AC2082AACC00578474 /* WBWord.swift */; };
 		E87FE5B12082ACB200578474 /* WBGameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87FE5B02082ACB200578474 /* WBGameManager.swift */; };
+		E87FE5B72083558B00578474 /* Array+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87FE5B62083558B00578474 /* Array+Additions.swift */; };
 		E897FABA20813EE100F7D6A1 /* WBScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E897FAB920813EE100F7D6A1 /* WBScoreView.swift */; };
 		E897FAD120821EAA00F7D6A1 /* WBDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E897FAD020821EAA00F7D6A1 /* WBDataManager.swift */; };
 		E897FAD320821F3300F7D6A1 /* words.json in Resources */ = {isa = PBXBuildFile; fileRef = E897FAD220821F3300F7D6A1 /* words.json */; };
@@ -77,6 +78,7 @@
 		E87FE5AA2082A90500578474 /* WBTurn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBTurn.swift; sourceTree = "<group>"; };
 		E87FE5AC2082AACC00578474 /* WBWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBWord.swift; sourceTree = "<group>"; };
 		E87FE5B02082ACB200578474 /* WBGameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBGameManager.swift; sourceTree = "<group>"; };
+		E87FE5B62083558B00578474 /* Array+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Additions.swift"; sourceTree = "<group>"; };
 		E897FAB920813EE100F7D6A1 /* WBScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBScoreView.swift; sourceTree = "<group>"; };
 		E897FAD020821EAA00F7D6A1 /* WBDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBDataManager.swift; sourceTree = "<group>"; };
 		E897FAD220821F3300F7D6A1 /* words.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = words.json; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 			children = (
 				E8033C282080BF48001CDF91 /* UIView+AutoLayoutHelper.swift */,
 				E8033C2D2080CE45001CDF91 /* UIColor+Helper.swift */,
+				E87FE5B62083558B00578474 /* Array+Additions.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -355,6 +358,7 @@
 				E8033C2C2080CD6B001CDF91 /* WBColor.swift in Sources */,
 				E80BA182207ED5CC009FA024 /* wordblocks.xcdatamodeld in Sources */,
 				E80BA17C207ED5CC009FA024 /* GameViewController.swift in Sources */,
+				E87FE5B72083558B00578474 /* Array+Additions.swift in Sources */,
 				E80BA17A207ED5CC009FA024 /* AppDelegate.swift in Sources */,
 				E8033C4820811B04001CDF91 /* WBLifeView.swift in Sources */,
 				E8033C2E2080CE45001CDF91 /* UIColor+Helper.swift in Sources */,

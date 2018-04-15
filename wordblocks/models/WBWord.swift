@@ -9,6 +9,17 @@
 import UIKit
 
 struct WBWord {
-    var pair:Dictionary<String, String>
-    var isDone:Bool = false
+    var en:String
+    var es:String
+    
+    var isDone:Bool
+    
+    init(
+        en:String = "",
+        es:String = "",
+        isDone:Bool = false) {
+        self.en = en
+        self.es = es
+        self.isDone = isDone
+    }
 }

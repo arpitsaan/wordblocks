@@ -10,19 +10,27 @@ import UIKit
 
 class WBDataManager: NSObject {
     //properties
-    var allWords = [String:String]()
+    public static var allWords = [WBWord]()
     
-    //shared manager
-    static let sharedInstance = WBDataManager.init()
+    public static func getAllWords() -> [WBWord] {
+        if allWords.count == 0 {
+            allWords = WBDataManager.loadWordsFromFile(name: "words")
+        }
+        return allWords
+    }
     
-    override init() {
-        super.init()
-        allWords = loadWordsFromFile(name: "words")
+    private static func logLoadedWords()  {
+        print(getAllWords())
     }
     
     
-    func loadWordsFromFile(name: String) -> Dictionary<String,String> {
+    private static func loadWordsFromFile(name: String) -> [WBWord] {
+        //empty array
+        var wordsToReturn = [WBWord]()
+        
         do {
+            
+           
             
             // Fetch URL
             let url = Bundle.main.url(forResource: name, withExtension: "json")!
@@ -34,26 +42,19 @@ class WBDataManager: NSObject {
             let JSON = try! JSONSerialization.jsonObject(with: data, options: [])
             
             if let jsonArray = JSON as? Array<Any> {
-                var testDict = [String : String]()
                 for arrayObject in jsonArray {
                     if let pairDict = arrayObject as? Dictionary<String, String> {
-                        testDict[pairDict["text_eng"]!] = pairDict["text_spa"]
+                        let engWord = pairDict["text_eng"]
+                        let spaWord = pairDict["text_spa"]
+                        
+                        let wordPair:WBWord = WBWord.init(en: engWord!, es: spaWord!, isDone: false)
+                        wordsToReturn.append(wordPair)
                     }
                 }
-                return testDict
             }
         }
-        return Dictionary()
+        
+        return wordsToReturn
     }
     
-    func getAllWords() -> Dictionary<String, String> {
-        if allWords.count == 0 {
-            allWords = WBDataManager.sharedInstance.loadWordsFromFile(name: "words")
-        }
-        return allWords
-    }
-    
-    func logLoadedWords()  {
-        print(getAllWords())
-    }
 }
