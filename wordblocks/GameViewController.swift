@@ -127,6 +127,7 @@ extension GameViewController: UICollisionBehaviorDelegate {
     
     func startTurn() {
         self.disableCollideAction = false
+        self.didCollideOnce = false
         self.containerView.alpha = 1.0
         
         //---------------------------------------
