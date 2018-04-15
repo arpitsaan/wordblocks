@@ -23,7 +23,7 @@ enum WBGameConfig {
     
     var intValue: Int {
         switch self {
-        case .difficultyFactor: return 3
+        case .difficultyFactor: return 2
         case .gravityFactor: return 1
         case .matchingBias: return 0
         case .scorePerWord: return 1

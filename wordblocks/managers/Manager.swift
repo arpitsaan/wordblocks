@@ -89,7 +89,6 @@ class Manager: NSObject {
     public static func updateTurn(action:WBUserAction) {
         
         var nextTurn = currentTurn
-        var shouldChangeWord = false
         
         switch action {
         case .tapStart:
@@ -99,7 +98,6 @@ class Manager: NSObject {
             nextTurn.gameState = .active
         
         case .tapRestart:
-            shouldChangeWord = true
             remainingWords = WBDataManager.getAllWords()
             currentTurn = WBTurn.init(
                 score: 0,
@@ -112,7 +110,6 @@ class Manager: NSObject {
             nextTurn.gameState = .start
             
         case .collision:
-            shouldChangeWord = true
             nextTurn.gameState = .lost
             nextTurn.activeLives -= 1
             
@@ -121,6 +118,7 @@ class Manager: NSObject {
                 nextTurn.score += WBGameConfig.scorePerWord.intValue
                 nextTurn.gravityPercent += WBGameConfig.difficultyFactor.intValue
                 nextTurn.gameState = .won
+                nextTurn.turnWord = getRandomTurnWord()
                 if nextTurn.score > highScore {
                     highScore = nextTurn.score
                     UserDefaults.standard.set(highScore, forKey: "wbhighscore")
@@ -131,7 +129,6 @@ class Manager: NSObject {
                 nextTurn.activeLives -= 1
                 nextTurn.gameState = .lost
             }
-            shouldChangeWord = true
             
             
         case .tapCross:
@@ -143,13 +140,13 @@ class Manager: NSObject {
                 nextTurn.score += WBGameConfig.scorePerWord.intValue
                 nextTurn.gravityPercent += WBGameConfig.difficultyFactor.intValue
                 nextTurn.gameState = .won
+                nextTurn.turnWord = getRandomTurnWord()
                 if nextTurn.score > highScore {
                     highScore = nextTurn.score
                     UserDefaults.standard.set(highScore, forKey: "wbhighscore")
                     let _ = UserDefaults.synchronize(.standard)
                 }
             }
-            shouldChangeWord = true
             
         case .tapScreen:
             if currentTurn.gameState == .won || currentTurn.gameState == .lost {
@@ -162,16 +159,6 @@ class Manager: NSObject {
             if (nextTurn.activeLives <= 0) {
                 nextTurn.gameState = .gameover
             }
-        }
-        
-        //new word
-        if (shouldChangeWord) {
-            if(nextTurn.gameState == .won) {
-                //FIXME:NEXT WORD
-                //WBGameManager.currentTurn.turnWord.bottomWord.isDone = true
-            }
-            
-            Manager.currentTurn.turnWord = Manager.getRandomTurnWord()
         }
         
         //did change state
