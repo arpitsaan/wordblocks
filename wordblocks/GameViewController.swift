@@ -131,6 +131,10 @@ extension GameViewController: UICollisionBehaviorDelegate {
     func startTurn() {
         self.containerView.alpha = 1.0
         
+        //word
+        self.topWordView.setWordData(wordData: WBGameManager.currentTurn.turnWord.topWordText)
+        self.bottomWordView.setWordData(wordData: WBGameManager.currentTurn.turnWord.bottomWordText)
+        
         //animation
         let itemBehaviour = UIDynamicItemBehavior(items: [topWordView, bottomWordView])
         itemBehaviour.elasticity = 0.1
@@ -149,7 +153,7 @@ extension GameViewController: UICollisionBehaviorDelegate {
     func collisionBehavior(_ behavior: UICollisionBehavior, endedContactFor item1: UIDynamicItem, with item2: UIDynamicItem) {
         if !self.didCollideOnce {
             self.didCollideOnce = true
-            //            self.userIsWrong(byCollision: true) //asdf
+            WBGameManager.updateTurn(action: .collision)
         }
     }
 }
@@ -220,17 +224,20 @@ extension GameViewController {
             message: """
             You will see a word, and a word in another language will start falling
             
-            💥 Answer before they collide
+            💥 Answer before they collide 💥
             
             Tap ✅ if words mean the same
             Tap ❌ if they mean different
             
+            👏 Get points for every correct answer
+            💔 Lose a life for every error
+            
             ---------------------------------
-            LIVES : 💖 X 3
             HIGHSCORE : 🏆 \(WBGameManager.highScore)
+            LIVES : 💖 x 3
             ---------------------------------
             
-            👊 Keep beating your HIGHSCORE!
+            👊 Go beat that High Score!
             """,
             preferredStyle: .alert);
         
@@ -246,6 +253,8 @@ extension GameViewController {
     
     //resume
     func resumeTurn() {
+        resetView()
+        startTurn()
     }
     
     //pause
@@ -288,11 +297,12 @@ extension GameViewController {
     }
     
     //reset
-    func resetTurn() {
+    func resetView() {
         
         if(self.animator != nil) {
             self.animator.removeAllBehaviors()
         }
+        
         self.didCollideOnce = false
         
         self.view.backgroundColor = WBColor.textDarker

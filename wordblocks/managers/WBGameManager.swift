@@ -16,6 +16,7 @@ enum WBUserAction {
     case tapTick
     case tapCross
     case tapScreen
+    case collision
     case exitGame
 }
 
@@ -81,28 +82,37 @@ class WBGameManager: NSObject {
         var nextTurn = currentTurn
         
         switch action {
-            case .tapStart: nextTurn.gameState = .start
+        case .tapStart: nextTurn.gameState = .start
             
-            case .tapPause: nextTurn.gameState = .pause
+        case .tapPause: nextTurn.gameState = .pause
             
-            case .tapResume: nextTurn.gameState = .pause
+        case .tapResume: nextTurn.gameState = .active
             
-            case .tapRestart:
-                nextTurn.gameState = .welcome
+        case .tapRestart:
+            nextTurn.gameState = .welcome
             
-            case .tapTick: break
+        case .collision:
+            nextTurn.gameState = .lost
             
-            case .tapCross: break
+        case .tapTick: break
             
-            case .tapScreen: break
+        case .tapCross: break
             
-            case .exitGame: break
+        case .tapScreen:
+            if currentTurn.gameState == .won || currentTurn.gameState == .lost {
+                nextTurn.gameState = .active
+            }
+            
+        case .exitGame: break
         }
         
+        let didChangeState = currentTurn.gameState != nextTurn.gameState
         currentTurn = nextTurn
         
-        //notification broadcast
-        let updateNotification = Notification.init(name: .gameManager)
-        NotificationCenter.default.post(updateNotification)
+        if didChangeState {
+            //notification broadcast
+            let updateNotification = Notification.init(name: .gameManager)
+            NotificationCenter.default.post(updateNotification)
+        }
     }
 }
