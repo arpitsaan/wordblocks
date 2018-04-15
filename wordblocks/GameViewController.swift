@@ -162,7 +162,7 @@ extension GameViewController: UICollisionBehaviorDelegate {
         
         animator = UIDynamicAnimator(referenceView: view)
         gravity = UIGravityBehavior(items: [topWordView])
-        gravity.magnitude = CGFloat(Double(Manager.currentTurn.gravityPercent)/150.0)
+        gravity.magnitude = CGFloat(Double(Manager.currentTurn.gravityPercent)/160.0)
         
         animator.addBehavior(gravity)
         
@@ -249,6 +249,9 @@ extension GameViewController {
     
     //welcome
     func welcomeUser() {
+        disableCollideAction = false
+        didCollideOnce = false
+        
         self.containerView.alpha = 0.2
         
         let alertController = UIAlertController.init(
@@ -315,6 +318,8 @@ extension GameViewController {
     //gameover
     //FIXME:Stop Collision
     func gameOver() {
+        didCollideOnce = false
+        disableCollideAction = false
         
         var titleText = "GAME OVER"
         var messageText = """
