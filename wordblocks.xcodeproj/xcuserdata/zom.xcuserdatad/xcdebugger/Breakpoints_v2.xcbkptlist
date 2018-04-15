@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "wordblocks/GameViewController.swift"
-            timestampString = "545486134.394646"
+            timestampString = "545486305.788443"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "218"
@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "wordblocks/GameViewController.swift"
-            timestampString = "545486134.394979"
+            filePath = "wordblocks/managers/WBGameManager.swift"
+            timestampString = "545511484.028461"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "192"
-            endingLineNumber = "192"
-            landmarkName = "updateViewState()"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "getRandomTurnWord()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

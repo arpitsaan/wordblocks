@@ -50,8 +50,7 @@ class WBGameManager: NSObject {
         highScore = UserDefaults.standard.integer(forKey:"wbhighscore")
         print("[WB] HighScoreLoaded as : \(highScore)")
         
-        
-        //current turn
+        //first user turn
         currentTurn = WBTurn.init(score: 0, activeLives: 3, turnWord:getRandomTurnWord(), gameState: .welcome)
         
         //notification broadcast
@@ -63,10 +62,12 @@ class WBGameManager: NSObject {
         var randomBottomWord = remainingWords.random()
         let randomTopWord = remainingWords.random()
         
-        //same word bias
-        let spreadCount:Int = Int(1/WBGameConfig.matchingBias.value) //lower spread is higher matching
-        let randomNum:UInt32 = arc4random_uniform(UInt32(spreadCount))
+        //same word bias - make a dice with multiple faces
+        let randomLimit:Int = Int(1/WBGameConfig.matchingBias.value) //lower spread is higher matching
+        let randomNum:UInt32 = arc4random_uniform(UInt32(randomLimit))
         var shouldMatch:Bool = false
+        
+        //when 1 rolls, its gonna be a matched face
         if randomNum==1 {
             print("[WB] Same word! \(randomBottomWord.en), \(randomBottomWord.es)")
             randomBottomWord = randomTopWord
@@ -81,6 +82,7 @@ class WBGameManager: NSObject {
         
         var nextTurn = currentTurn
         var shouldChangeWord = false
+        
         switch action {
         case .tapStart:
             nextTurn.gameState = .start

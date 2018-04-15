@@ -30,8 +30,6 @@ class WBDataManager: NSObject {
         
         do {
             
-           
-            
             // Fetch URL
             let url = Bundle.main.url(forResource: name, withExtension: "json")!
             

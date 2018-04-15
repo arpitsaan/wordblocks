@@ -31,10 +31,10 @@ struct WBTurn {
     var score:Int
     var activeLives:Int
     var turnWord:WBTurnWord
-//    var turnIndex:Int
-//    var correctAnsCount:Int
-//    var correctMatchedAnsCount:Int
-//    var currentStreak:Int
+//v2    var turnIndex:Int
+//v2    var correctAnsCount:Int
+//v2    var correctMatchedAnsCount:Int
+//v2    var currentStreak:Int
     var gameState:WBGameState
     
     init(score:Int = 0,
