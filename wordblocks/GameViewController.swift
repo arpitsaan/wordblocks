@@ -106,7 +106,7 @@ extension GameViewController {
         livesView = WBLivesView()
         containerView.addSubview(livesView)
         livesView.layer.anchorPoint = CGPoint.init(x: 1.0, y: 0)
-        self.livesView.addTrailingConstraint(toView: containerView, constant:-K.padding.side)
+        self.livesView.addTrailingConstraint(toView: containerView, constant:-1)
         self.livesView.addTopConstraint(toView: containerView, constant:K.padding.side*2.5)
         
         //score card view
@@ -386,9 +386,9 @@ extension GameViewController {
             💔💔💔
             
             
-            🏆🏆🏆
-            NEW HIGHSCORE 👉 \(Manager.highScore) 👈
-            🙌 🎖🙌
+            🏆
+            NEW HIGHSCORE
+            👉 \(Manager.highScore) 👈
             
             """
         }
@@ -398,7 +398,7 @@ extension GameViewController {
             message: messageText,
             preferredStyle: .alert);
         
-        let action = UIAlertAction(title: "🏁 PLAY AGAIN 🏁",
+        let action = UIAlertAction(title: "🏁 Play Again 🏁",
                                    style: .default,
                                    handler: {(alert: UIAlertAction!) in
                                     Manager.updateTurn(action: .tapRestart)})
