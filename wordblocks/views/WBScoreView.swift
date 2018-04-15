@@ -39,6 +39,7 @@ class WBScoreView: UIView {
         topScoreBgView = UIView()
         topScoreBgView.backgroundColor = WBColor.green
         topScoreBgView.addStaticHeightConstraint(constant: 18)
+        topScoreBgView.addStaticWidthConstraint(constant: 44)
         topScoreBgView.layer.cornerRadius = 2.0
         topScoreBgView.clipsToBounds = true
         
@@ -47,6 +48,8 @@ class WBScoreView: UIView {
         topScoreLabel.textAlignment = .center
         topScoreLabel.font = UIFont(name: "DINCondensed-Bold", size: 18)
         topScoreLabel.textColor = WBColor.textDarker
+        topScoreLabel.adjustsFontSizeToFitWidth = true
+        topScoreLabel.minimumScaleFactor = 0.7
         topScoreLabel.setContentHuggingPriority(.required, for: .horizontal)
         topScoreLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
         topScoreLabel.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
@@ -54,7 +57,7 @@ class WBScoreView: UIView {
         topScoreBgView.addSubview(topScoreLabel)
         topScoreLabel.addCenterXConstraint(toView: topScoreBgView)
         topScoreLabel.addCenterYConstraint(toView: topScoreBgView, constant: 3.0)
-     
+        
         //container view
         self.containerStackView.addArrangedSubview(topScoreBgView)
         self.containerStackView.addArrangedSubview(currentScoreLabel)
@@ -68,11 +71,12 @@ class WBScoreView: UIView {
     
     //setters
     func setCurrentScore(currentScore: Int) {
-        self.currentScoreLabel.text = "77"
+        self.currentScoreLabel.text = String(currentScore)
     }
     
     func setTopScore(topScore: Int) {
-        self.topScoreLabel.text = "TOP 157"
+        let scoreText = String(topScore)
+        self.topScoreLabel.text = "HIGH \(scoreText)"
     }
     
     //misc

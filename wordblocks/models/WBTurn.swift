@@ -31,29 +31,21 @@ struct WBTurn {
     var score:Int
     var activeLives:Int
     var turnWord:WBTurnWord
-//v2    var turnIndex:Int
-//v2    var correctAnsCount:Int
-//v2    var correctMatchedAnsCount:Int
-//v2    var currentStreak:Int
     var gameState:WBGameState
+    //v2    var turnIndex:Int
+    //v2    var correctAnsCount:Int
+    //v2    var correctMatchedAnsCount:Int
+    //v2    var currentStreak:Int
     
     init(score:Int = 0,
         activeLives:Int = 3,
         turnWord:WBTurnWord? = WBTurnWord.init(),
-//        turnIndex:Int = 0,
-//        correctAnsCount:Int = 0,
-//        correctMatchedAnsCount:Int = 0,
-//        currentStreak:Int = 0,
         gameState:WBGameState = .welcome
         ) {
         
         self.score = score
         self.activeLives = activeLives
         self.turnWord = turnWord!
-//        self.turnIndex = turnIndex
-//        self.correctAnsCount = correctAnsCount
-//        self.correctMatchedAnsCount = correctMatchedAnsCount
-//        self.currentStreak = currentStreak
         self.gameState = gameState
     }
 }

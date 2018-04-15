@@ -10,7 +10,7 @@ import UIKit
 
 class WBDataManager: NSObject {
     //properties
-    public static var allWords = [WBWord]()
+    private static var allWords = [WBWord]()
     
     public static func getAllWords() -> [WBWord] {
         if allWords.count == 0 {
@@ -41,12 +41,17 @@ class WBDataManager: NSObject {
             
             if let jsonArray = JSON as? Array<Any> {
                 for arrayObject in jsonArray {
+                    
+                    var indexCount:Int = 0
+                    
                     if let pairDict = arrayObject as? Dictionary<String, String> {
                         let engWord = pairDict["text_eng"]
                         let spaWord = pairDict["text_spa"]
                         
-                        let wordPair:WBWord = WBWord.init(en: engWord!, es: spaWord!, isDone: false)
+                        let wordPair:WBWord = WBWord.init(en: engWord!, es: spaWord!, isDone: false, index: indexCount)
                         wordsToReturn.append(wordPair)
+                        indexCount += 1
+                        
                     }
                 }
             }

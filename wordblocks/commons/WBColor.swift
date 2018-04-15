@@ -19,6 +19,7 @@ struct WBColor {
     static let greenDark = UIColor(hex:0x74C479)
     
     static let pink = UIColor(hex:0xE3AAB8)
+    static let pinkBright = UIColor(hex:0xFE4697)
     static let pinkDark = UIColor(hex:0xFDBFCF)
     
     static let violet = UIColor(hex:0x6B35FA)
@@ -29,5 +30,8 @@ struct WBColor {
     static let textDark = UIColor(hex:0x4F6375)
     static let textDarker = UIColor(hex:0x38424A)
     
+    static let bgDark = UIColor(hex:0x292929)
+    static let blue = UIColor(hex:0x52BFD5)
+
     static let grey = UIColor(hex:0xA7B1BA)
 }

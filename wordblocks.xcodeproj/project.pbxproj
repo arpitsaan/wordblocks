@@ -25,7 +25,7 @@
 		E87FE5A92082A7AB00578474 /* WBGameConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87FE5A82082A7AB00578474 /* WBGameConfig.swift */; };
 		E87FE5AB2082A90500578474 /* WBTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87FE5AA2082A90500578474 /* WBTurn.swift */; };
 		E87FE5AD2082AACC00578474 /* WBWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87FE5AC2082AACC00578474 /* WBWord.swift */; };
-		E87FE5B12082ACB200578474 /* WBGameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87FE5B02082ACB200578474 /* WBGameManager.swift */; };
+		E87FE5B12082ACB200578474 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87FE5B02082ACB200578474 /* Manager.swift */; };
 		E87FE5B72083558B00578474 /* Array+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87FE5B62083558B00578474 /* Array+Additions.swift */; };
 		E897FABA20813EE100F7D6A1 /* WBScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E897FAB920813EE100F7D6A1 /* WBScoreView.swift */; };
 		E897FAD120821EAA00F7D6A1 /* WBDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E897FAD020821EAA00F7D6A1 /* WBDataManager.swift */; };
@@ -75,7 +75,7 @@
 		E87FE5A82082A7AB00578474 /* WBGameConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBGameConfig.swift; sourceTree = "<group>"; };
 		E87FE5AA2082A90500578474 /* WBTurn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBTurn.swift; sourceTree = "<group>"; };
 		E87FE5AC2082AACC00578474 /* WBWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBWord.swift; sourceTree = "<group>"; };
-		E87FE5B02082ACB200578474 /* WBGameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBGameManager.swift; sourceTree = "<group>"; };
+		E87FE5B02082ACB200578474 /* Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
 		E87FE5B62083558B00578474 /* Array+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Additions.swift"; sourceTree = "<group>"; };
 		E897FAB920813EE100F7D6A1 /* WBScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBScoreView.swift; sourceTree = "<group>"; };
 		E897FAD020821EAA00F7D6A1 /* WBDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBDataManager.swift; sourceTree = "<group>"; };
@@ -198,7 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				E897FAD020821EAA00F7D6A1 /* WBDataManager.swift */,
-				E87FE5B02082ACB200578474 /* WBGameManager.swift */,
+				E87FE5B02082ACB200578474 /* Manager.swift */,
 			);
 			path = managers;
 			sourceTree = "<group>";
@@ -361,7 +361,7 @@
 				E8033C4620811ADD001CDF91 /* WBLivesView.swift in Sources */,
 				E8C70D9020802C33002D22E0 /* WBWordView.swift in Sources */,
 				E8033C292080BF48001CDF91 /* UIView+AutoLayoutHelper.swift in Sources */,
-				E87FE5B12082ACB200578474 /* WBGameManager.swift in Sources */,
+				E87FE5B12082ACB200578474 /* Manager.swift in Sources */,
 				E8033C4A208125D7001CDF91 /* WBConstants.swift in Sources */,
 				E87FE5AB2082A90500578474 /* WBTurn.swift in Sources */,
 				E87FE5A92082A7AB00578474 /* WBGameConfig.swift in Sources */,

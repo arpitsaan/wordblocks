@@ -31,8 +31,9 @@ extension Notification.Name {
     static let gameManager  = Notification.Name("WBGameManagerChannel")
 }
 
-class WBGameManager: NSObject {
+class Manager: NSObject {
     public static var highScore:Int = 0
+    public static var previousTurn:WBTurn? = nil
     public static var currentTurn:WBTurn = WBTurn()
     
     private static var remainingWords = [WBWord]()
@@ -57,6 +58,11 @@ class WBGameManager: NSObject {
     
     private static func getRandomTurnWord() -> WBTurnWord {
         var randomBottomWord = remainingWords.random()
+        
+        while randomBottomWord.isDone == true {
+            randomBottomWord = remainingWords.random()
+        }
+        
         let randomTopWord = remainingWords.random()
         
         //same word bias - make a dice with multiple faces
@@ -74,7 +80,7 @@ class WBGameManager: NSObject {
         return WBTurnWord.init(topWord: randomTopWord, bottomWord: randomBottomWord, isMatching: shouldMatch)
     }
     
-    //next turn - like redux reducers
+    //Next Turn State Machine
     public static func updateTurn(action:WBUserAction) {
         
         var nextTurn = currentTurn
@@ -89,7 +95,15 @@ class WBGameManager: NSObject {
         
         case .tapRestart:
             shouldChangeWord = true
-            nextTurn.gameState = .welcome
+            remainingWords = WBDataManager.getAllWords()
+            currentTurn = WBTurn.init(
+                score: 0,
+                activeLives: 3,
+                turnWord:getRandomTurnWord(),
+                gameState: .welcome)
+            nextTurn = currentTurn
+
+            nextTurn.gameState = .start
             
         case .collision:
             shouldChangeWord = true
@@ -97,9 +111,14 @@ class WBGameManager: NSObject {
             nextTurn.activeLives -= 1
             
         case .tapTick:
-            if(WBGameManager.currentTurn.turnWord.isMatching) {
+            if(Manager.currentTurn.turnWord.isMatching) {
                 nextTurn.score += 10
                 nextTurn.gameState = .won
+                if nextTurn.score > highScore {
+                    highScore = nextTurn.score
+                    UserDefaults.standard.set(highScore, forKey: "highscore")
+                    let _ = UserDefaults.synchronize(.standard)
+                }
             }
             else {
                 nextTurn.activeLives -= 1
@@ -109,12 +128,15 @@ class WBGameManager: NSObject {
             
             
         case .tapCross:
-            if(WBGameManager.currentTurn.turnWord.isMatching) {
+            if(Manager.currentTurn.turnWord.isMatching) {
                 nextTurn.gameState = .lost
                 nextTurn.activeLives -= 1
             }
             else {
                 nextTurn.gameState = .won
+                if nextTurn.score > highScore {
+                    highScore = nextTurn.score
+                }
             }
             shouldChangeWord = true
             
@@ -134,15 +156,18 @@ class WBGameManager: NSObject {
         //new word
         if (shouldChangeWord) {
             if(nextTurn.gameState == .won) {
-//                if let index = WBGameManager.remainingWords.index(of: WBGameManager.currentTurn.turnWord.bottomWord) {
-//                    WBGameManager.remainingWords.remove(at: index)
-//                }
+                //FIXME:NEXT WORD
+                //WBGameManager.currentTurn.turnWord.bottomWord.isDone = true
             }
-            WBGameManager.currentTurn.turnWord = WBGameManager.getRandomTurnWord()
+            
+            Manager.currentTurn.turnWord = Manager.getRandomTurnWord()
         }
         
         //did change state
-        let didChangeState = currentTurn.gameState != nextTurn.gameState
+        let didChangeState = currentTurn.gameState != nextTurn.gameState ||
+            previousTurn!.gameState == WBGameState.gameover
+        
+        previousTurn = currentTurn
         currentTurn = nextTurn
         
         if didChangeState {

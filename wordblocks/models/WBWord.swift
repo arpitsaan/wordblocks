@@ -13,13 +13,17 @@ struct WBWord {
     var es:String
     
     var isDone:Bool
+    var index:Int
     
     init(
         en:String = "",
         es:String = "",
-        isDone:Bool = false) {
+        isDone:Bool = false,
+        index:Int = -1
+        ) {
         self.en = en
         self.es = es
         self.isDone = isDone
+        self.index = index
     }
 }
