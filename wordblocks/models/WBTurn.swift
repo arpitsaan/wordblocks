@@ -31,6 +31,7 @@ struct WBTurn {
     var score:Int
     var activeLives:Int
     var turnWord:WBTurnWord
+    var gravityPercent:Int
     var gameState:WBGameState
     //v2    var turnIndex:Int
     //v2    var correctAnsCount:Int
@@ -40,6 +41,7 @@ struct WBTurn {
     init(score:Int = 0,
         activeLives:Int = 3,
         turnWord:WBTurnWord? = WBTurnWord.init(),
+        gravityPercent:Int = 5,
         gameState:WBGameState = .welcome
         ) {
         
@@ -47,5 +49,6 @@ struct WBTurn {
         self.activeLives = activeLives
         self.turnWord = turnWord!
         self.gameState = gameState
+        self.gravityPercent = gravityPercent
     }
 }

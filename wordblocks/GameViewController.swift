@@ -126,8 +126,8 @@ extension GameViewController {
 extension GameViewController: UICollisionBehaviorDelegate {
     
     func startTurn() {
+        self.disableCollideAction = false
         self.containerView.alpha = 1.0
-        
         
         //---------------------------------------
         // FIXME: First run container animation
@@ -156,11 +156,13 @@ extension GameViewController: UICollisionBehaviorDelegate {
         
         //animation
         let itemBehaviour = UIDynamicItemBehavior(items: [topWordView, bottomWordView])
-        itemBehaviour.elasticity = 0.1
+        itemBehaviour.density = 0.5
+        itemBehaviour.resistance = 0.3
         
         animator = UIDynamicAnimator(referenceView: view)
         gravity = UIGravityBehavior(items: [topWordView])
-        gravity.magnitude = 0.1
+        gravity.magnitude = CGFloat(Double(Manager.currentTurn.gravityPercent)/100.0)
+        
         animator.addBehavior(gravity)
         
         collision = UICollisionBehavior(items: [topWordView, bottomWordView])
@@ -290,7 +292,7 @@ extension GameViewController {
     func handleWinState() {
         //FIXME: Stop Collision
         self.disableCollideAction = true
-        UIView.animate(withDuration: 0.6) {
+        UIView.animate(withDuration: 0.1) {
             self.view.backgroundColor = WBColor.green
             self.inputControl.alpha = 0
             self.scoreView.setTopScore(topScore: Manager.highScore)
@@ -301,12 +303,12 @@ extension GameViewController {
     //lost
     func handleLoseState() {
         self.disableCollideAction = true
-        UIView.animate(withDuration: 0.1, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 1.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
+        UIView.animate(withDuration: 0.1) {
             self.view.backgroundColor = WBColor.red
             self.inputControl.alpha = 0
             self.scoreView.alpha = 0
             self.livesView.transform = CGAffineTransform.init(scaleX: 2.0, y: 2.0)
-        })
+        }
     }
     
     //gameover
@@ -327,6 +329,8 @@ extension GameViewController {
         👊 Go beat that High Score!
         """
         
+        //TODO:Convert high score text to emojis
+        
         if Manager.currentTurn.score >= Manager.highScore
             && Manager.currentTurn.score != 0 {
             titleText = "GAME OVER"
@@ -335,8 +339,8 @@ extension GameViewController {
             
             
             🏆🏆🏆
-            🙌 HIGHSCORE! : \(Manager.highScore) 🙌
-            🎖🎖🎖
+            NEW HIGHSCORE 👉 \(Manager.highScore) 👈
+            🙌 🎖🙌
             
             """
         }

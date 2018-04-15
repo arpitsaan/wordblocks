@@ -49,7 +49,12 @@ class Manager: NSObject {
         print("[WB] HighScoreLoaded as : \(highScore)")
         
         //first user turn
-        currentTurn = WBTurn.init(score: 0, activeLives: 3, turnWord:getRandomTurnWord(), gameState: .welcome)
+        currentTurn = WBTurn.init(
+            score: 0,
+            activeLives: 3,
+            turnWord:getRandomTurnWord(),
+            gravityPercent: 5,
+            gameState: .welcome)
         
         //notification broadcast
         let updateNotification = Notification.init(name: .gameManager)
@@ -100,6 +105,7 @@ class Manager: NSObject {
                 score: 0,
                 activeLives: 3,
                 turnWord:getRandomTurnWord(),
+                gravityPercent: 5,
                 gameState: .welcome)
             nextTurn = currentTurn
 
@@ -113,6 +119,7 @@ class Manager: NSObject {
         case .tapTick:
             if(Manager.currentTurn.turnWord.isMatching) {
                 nextTurn.score += WBGameConfig.scorePerWord.intValue
+                nextTurn.gravityPercent += WBGameConfig.difficultyFactor.intValue
                 nextTurn.gameState = .won
                 if nextTurn.score > highScore {
                     highScore = nextTurn.score
@@ -134,9 +141,12 @@ class Manager: NSObject {
             }
             else {
                 nextTurn.score += WBGameConfig.scorePerWord.intValue
+                nextTurn.gravityPercent += WBGameConfig.difficultyFactor.intValue
                 nextTurn.gameState = .won
                 if nextTurn.score > highScore {
                     highScore = nextTurn.score
+                    UserDefaults.standard.set(highScore, forKey: "wbhighscore")
+                    let _ = UserDefaults.synchronize(.standard)
                 }
             }
             shouldChangeWord = true
