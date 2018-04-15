@@ -112,11 +112,11 @@ class Manager: NSObject {
             
         case .tapTick:
             if(Manager.currentTurn.turnWord.isMatching) {
-                nextTurn.score += 10
+                nextTurn.score += WBGameConfig.scorePerWord.intValue
                 nextTurn.gameState = .won
                 if nextTurn.score > highScore {
                     highScore = nextTurn.score
-                    UserDefaults.standard.set(highScore, forKey: "highscore")
+                    UserDefaults.standard.set(highScore, forKey: "wbhighscore")
                     let _ = UserDefaults.synchronize(.standard)
                 }
             }
@@ -133,6 +133,7 @@ class Manager: NSObject {
                 nextTurn.activeLives -= 1
             }
             else {
+                nextTurn.score += WBGameConfig.scorePerWord.intValue
                 nextTurn.gameState = .won
                 if nextTurn.score > highScore {
                     highScore = nextTurn.score

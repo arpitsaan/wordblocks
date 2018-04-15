@@ -9,11 +9,21 @@
 enum WBGameConfig {
     case gravityFactor
     case matchingBias
+    case scorePerWord
     
     var value: Double {
         switch self {
             case .gravityFactor: return 1.1
             case .matchingBias: return 0.33
+            case .scorePerWord: return 1
+        }
+    }
+    
+    var intValue: Int {
+        switch self {
+        case .gravityFactor: return 1
+        case .matchingBias: return 0
+        case .scorePerWord: return 1
         }
     }
 }

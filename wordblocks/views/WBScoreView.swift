@@ -39,14 +39,14 @@ class WBScoreView: UIView {
         topScoreBgView = UIView()
         topScoreBgView.backgroundColor = WBColor.green
         topScoreBgView.addStaticHeightConstraint(constant: 18)
-        topScoreBgView.addStaticWidthConstraint(constant: 44)
+        topScoreBgView.addStaticWidthConstraint(constant: 46)
         topScoreBgView.layer.cornerRadius = 2.0
         topScoreBgView.clipsToBounds = true
         
         //top score label
         topScoreLabel = UILabel.init()
         topScoreLabel.textAlignment = .center
-        topScoreLabel.font = UIFont(name: "DINCondensed-Bold", size: 18)
+        topScoreLabel.font = UIFont(name: "DINCondensed-Bold", size: 17)
         topScoreLabel.textColor = WBColor.textDarker
         topScoreLabel.adjustsFontSizeToFitWidth = true
         topScoreLabel.minimumScaleFactor = 0.7

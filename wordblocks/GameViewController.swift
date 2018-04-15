@@ -26,6 +26,7 @@ class GameViewController: UIViewController, WBInputControlDelegate {
     var scoreView = WBScoreView()
     
     var didCollideOnce:Bool = false
+    var disableCollideAction:Bool = true
     
     //selectors
     @objc func didTapScreen() {
@@ -171,7 +172,9 @@ extension GameViewController: UICollisionBehaviorDelegate {
     func collisionBehavior(_ behavior: UICollisionBehavior, endedContactFor item1: UIDynamicItem, with item2: UIDynamicItem) {
         if !self.didCollideOnce {
             self.didCollideOnce = true
-            Manager.updateTurn(action: .collision)
+            if self.disableCollideAction == false {
+                Manager.updateTurn(action: .collision)
+            }
         }
     }
 }
@@ -224,10 +227,10 @@ extension GameViewController {
                 resumeTurn()
             
             case .won:
-                showWonView()
+                handleWinState()
             
             case .lost:
-                showLostView()
+                handleLoseState()
             
             case .gameover:
                 gameOver()
@@ -284,21 +287,20 @@ extension GameViewController {
     }
     
     //won
-    func showWonView() {
+    func handleWinState() {
         //FIXME: Stop Collision
-        
-        UIView.animate(withDuration: 0.1, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 1.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
+        self.disableCollideAction = true
+        UIView.animate(withDuration: 0.6) {
             self.view.backgroundColor = WBColor.green
             self.inputControl.alpha = 0
-            self.scoreView.transform = CGAffineTransform.init(scaleX: 2.0, y: 2.0)
-            self.livesView.alpha = 0
             self.scoreView.setTopScore(topScore: Manager.highScore)
             self.scoreView.setCurrentScore(currentScore: Manager.currentTurn.score)
-        })
+        }
     }
     
     //lost
-    func showLostView() {
+    func handleLoseState() {
+        self.disableCollideAction = true
         UIView.animate(withDuration: 0.1, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 1.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
             self.view.backgroundColor = WBColor.red
             self.inputControl.alpha = 0
@@ -327,8 +329,16 @@ extension GameViewController {
         
         if Manager.currentTurn.score >= Manager.highScore
             && Manager.currentTurn.score != 0 {
-            titleText = "🏆🏆🏆 \(Manager.highScore) 🏆🏆🏆"
-            messageText = "🙌 HIGHSCORE!"
+            titleText = "GAME OVER"
+            messageText = """
+            💔💔💔
+            
+            
+            🏆🏆🏆
+            🙌 HIGHSCORE! : \(Manager.highScore) 🙌
+            🎖🎖🎖
+            
+            """
         }
         
         let alertController = UIAlertController.init(
@@ -360,6 +370,7 @@ extension GameViewController {
         }
         
         self.didCollideOnce = false
+        self.disableCollideAction = false
         
         self.view.backgroundColor = getBGColor()
         self.inputControl.alpha = 1
