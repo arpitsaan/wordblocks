@@ -24,8 +24,8 @@ class GameViewController: UIViewController, WBInputControlDelegate {
     var bottomWordView = WBWordView()
     var inputControl = WBInputControl()
     var scoreView = WBScoreView()
-    var continueLabel = UILabel()
-    var announceLabel = UILabel()
+    var winLabel = UILabel()
+    var loseLabel = UILabel()
     
     var didCollideOnce:Bool = false
     var disableCollideAction:Bool = true
@@ -82,15 +82,25 @@ extension GameViewController {
         let tapGesture = UITapGestureRecognizer.init(target: self, action:#selector(didTapScreen))
         containerView.addGestureRecognizer(tapGesture)
         
-        //continue label
-        continueLabel = UILabel.init()
-        containerView.addSubview(continueLabel)
-        continueLabel.font = UIFont(name: "DINAlternate-Bold", size: 20)
-        continueLabel.textColor = WBColor.bgDark
-        continueLabel.addCenterXConstraint(toView: containerView)
-        continueLabel.addCenterYConstraint(toView: containerView)
-        continueLabel.text = "👆Tap anywhere to continue"
-        continueLabel.alpha = 0
+        //win label
+        winLabel = UILabel.init()
+        containerView.addSubview(winLabel)
+        winLabel.font = UIFont(name: "DINAlternate-Bold", size: 24)
+        winLabel.textColor = WBColor.bgDark
+        winLabel.addCenterXConstraint(toView: containerView)
+        winLabel.addCenterYConstraint(toView: containerView)
+        winLabel.text = "🙌 CORRECT · Tap to continue…"
+        winLabel.alpha = 0
+        
+        //lose label
+        loseLabel = UILabel.init()
+        containerView.addSubview(loseLabel)
+        loseLabel.font = UIFont(name: "DINAlternate-Bold", size: 24)
+        loseLabel.textColor = WBColor.bgDark
+        loseLabel.addCenterXConstraint(toView: containerView)
+        loseLabel.addCenterYConstraint(toView: containerView)
+        loseLabel.text = "💔 INCORRECT · Tap to continue…"
+        loseLabel.alpha = 0
         
         //lives view
         livesView = WBLivesView()
@@ -268,7 +278,9 @@ extension GameViewController {
     
     //welcome
     func welcomeUser() {
-        self.continueLabel.alpha = 0
+        self.winLabel.alpha = 0
+        self.loseLabel.alpha = 0
+        
         disableCollideAction = false
         didCollideOnce = false
         
@@ -315,12 +327,12 @@ extension GameViewController {
     //won
     func handleWinState() {
         self.disableCollideAction = true
-        
+        self.loseLabel.alpha = 0
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.1, options: .allowUserInteraction, animations: {
             
             self.view.backgroundColor = WBColor.green
             self.inputControl.alpha = 0
-            self.continueLabel.alpha = 1
+            self.winLabel.alpha = 1
             self.scoreView.setTopScore(topScore: Manager.highScore)
             self.scoreView.setCurrentScore(currentScore: Manager.currentTurn.score)
             self.livesView.alpha = 0
@@ -333,11 +345,12 @@ extension GameViewController {
     //lost
     func handleLoseState() {
         self.disableCollideAction = true
+        self.winLabel.alpha = 0
         UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.1, options: .allowUserInteraction, animations: {
             self.view.backgroundColor = WBColor.red
             self.inputControl.alpha = 0
             self.scoreView.alpha = 0
-            self.continueLabel.alpha = 1
+            self.loseLabel.alpha = 1
             self.livesView.transform = CGAffineTransform.init(scaleX: 2.5, y: 2.5)
         }) { (true) in
             print("[WB] Lose state animation completed")
@@ -407,7 +420,8 @@ extension GameViewController {
         if(self.animator != nil) {
             self.animator.removeAllBehaviors()
         }
-        self.continueLabel.alpha = 0
+        self.winLabel.alpha = 0
+        self.loseLabel.alpha = 0
         self.didCollideOnce = false
         self.disableCollideAction = false
         
