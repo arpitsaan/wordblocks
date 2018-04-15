@@ -39,7 +39,7 @@ struct WBTurn {
     
     init(score:Int = 0,
         activeLives:Int = 3,
-        turnWord:WBTurnWord? = nil,
+        turnWord:WBTurnWord? = WBTurnWord.init(),
 //        turnIndex:Int = 0,
 //        correctAnsCount:Int = 0,
 //        correctMatchedAnsCount:Int = 0,
