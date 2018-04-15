@@ -389,7 +389,8 @@ extension GameViewController {
             🏆
             NEW HIGHSCORE
             👉 \(Manager.highScore) 👈
-            
+
+            🙌 🙌 🙌 🙌
             """
         }
         
