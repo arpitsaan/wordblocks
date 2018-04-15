@@ -8,8 +8,10 @@
 
 import UIKit
 
+//---------------------------------------
+// MARK: Main Controller + Property List
+//---------------------------------------
 class GameViewController: UIViewController, WBInputControlDelegate {
-    
     //properties
     var animator: UIDynamicAnimator!
     var gravity: UIGravityBehavior!
@@ -173,6 +175,9 @@ extension GameViewController {
 //------------------------
 extension GameViewController {
     
+    //-------------
+    // Game States
+    //-------------
     //welcome
     //start
     //active
