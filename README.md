@@ -21,7 +21,7 @@ Coded with ❤️in the heart of India.
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 ## Gameplay
-![Word Block Rules](/images/welcome.png?raw=true "The welcome screen")
+![Word Block Rules](/images/welcome.PNG?raw=true "A Quick Welcome Screen made with an UIAlertController")
 The goal of playing Word Blocks is to reach the highest possible score. 
 The higher you score, the more you learn the language automatically!
 
@@ -36,7 +36,7 @@ The game starts with you having 3 lives, the game ends when you lose all lives.
 
 🔥It becomes challenging over time as the the gravity in the scene increases with every correct answer.
 
-![Word Block Game Over State](/images/gameover.png?raw=true "Game Over!")
+![Word Block Game Over State](/images/gameover.PNG?raw=true "Game Over!")
 
 ## Installation
 Clone this repository ->  Hit run in your XCode -> Start Playing!
