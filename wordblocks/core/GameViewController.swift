@@ -278,6 +278,9 @@ extension GameViewController {
             
             case .gameover:
                 gameOver()
+                
+            case .superWin:
+                break
         }
     }
     

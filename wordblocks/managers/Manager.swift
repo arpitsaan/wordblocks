@@ -26,6 +26,7 @@ enum WBGameState {
     case lost
     case collision
     case gameover
+    case superWin
     
     //TODO:V2
     //    case paused
@@ -40,7 +41,7 @@ class Manager: NSObject {
     public static var previousTurn:WBTurn? = nil
     public static var currentTurn:WBTurn = WBTurn()
     
-    private static var remainingWords = [WBWord]()
+    public static var remainingWords = [WBWord]()
     
     //begin game
     public static func beginGame() {
@@ -66,13 +67,16 @@ class Manager: NSObject {
     }
     
     private static func getRandomTurnWord() -> WBTurnWord {
-        var randomBottomWord = remainingWords.random()
+        var randomBottomWord = WBWord.init()
+        var randomTopWord = WBWord.init()
         
-        while randomBottomWord.isDone == true {
+        if remainingWords.count > 0 {
             randomBottomWord = remainingWords.random()
+            while randomBottomWord.isDone == true {
+                randomBottomWord = remainingWords.random()
+            }
+            randomTopWord = remainingWords.random()
         }
-        
-        let randomTopWord = remainingWords.random()
         
         //same word bias - make a dice with multiple faces
         let randomLimit:Int = Int(1/WBGameConfig.matchingBias.value) //lower spread is higher matching

@@ -16,7 +16,7 @@ class wordblocksTests: XCTestCase {
     }
     
     //------------------
-    // game start checks
+    // gamestart tests
     //------------------
     func testWordsJSONDataIsLoaded() {
         XCTAssert(WBDataManager.getAllWords().count > 0, "expect JSON file loads on game start")
@@ -36,16 +36,61 @@ class wordblocksTests: XCTestCase {
     }
     
     //------------------
-    // game start checks
+    // gameplay tests
     //------------------
-    
-    func testPerformanceExample() {
-        //TODO:view did appear in 10 seconds
+    func testUserLostALifeWhenYesTappedOnNonMatchingWords() {
+        Manager.currentTurn.activeLives = 3
+        Manager.currentTurn.turnWord.isMatching = false
+        Manager.updateTurn(action: .tapTick)
         
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+        //check updated turn
+        XCTAssert(Manager.currentTurn.activeLives == 2 , "expect user loses a life when he answers correct on ")
+    }
+    
+    func testUserScoreIncreasesWhenTappedNoOnNonMatchingWords() {
+        //Setup
+        Manager.currentTurn.score = 10
+        Manager.currentTurn.turnWord.isMatching = false
+        
+        //Execution
+        Manager.updateTurn(action: .tapCross)
+        
+        //Expectation
+        XCTAssert(Manager.currentTurn.score > 10 , "expect user score increases when tapped NO on NON-Matching Words (correct ans)")
+    }
+    
+    func testHighScoreIsGettingUpdated() {
+        //Setup
+        Manager.highScore = 10
+        Manager.currentTurn.score = 10
+        
+        //Execution
+        Manager.currentTurn.turnWord.isMatching = true
+        Manager.updateTurn(action: .tapTick)
+        
+        Manager.updateTurn(action: .tapScreen)
+        
+        Manager.currentTurn.turnWord.isMatching = true
+        Manager.updateTurn(action: .tapTick)
+        
+        //Expectation
+        XCTAssert(Manager.currentTurn.score > 10 , "expect user loses a life when he answers correct on ")
+    }
+    
+    //-----------------------------------------------------------------------
+    // Super Win State (user answers everything correctly)
+    //-----------------------------------------------------------------------
+    func testGameReachesSuperWinStateWhenDataSetGetsEmptied() {
+        //Setup
+        Manager.remainingWords = []
+        
+        //Execution
+        Manager.currentTurn.turnWord.isMatching = true
+        Manager.updateTurn(action: .tapTick)
+        Manager.updateTurn(action: .tapScreen)
+        
+        //Expectation
+        XCTAssert(Manager.currentTurn.gameState == .superWin , "expect the game to reach a super win state when no words are left to practice")
     }
     
 }
