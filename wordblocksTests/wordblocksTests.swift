@@ -10,8 +10,6 @@ import XCTest
 @testable import wordblocks
 
 class wordblocksTests: XCTestCase {
-    //TODO:INITIALIZE GLOBAL STATE MANAGER
-    
     override func setUp() {
         super.setUp()
         //set initial turn

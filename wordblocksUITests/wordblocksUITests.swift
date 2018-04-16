@@ -28,8 +28,8 @@ class wordblocksUITests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // Use recording to get started writing UI tests.
+    func testIfInitialSixRoundsWorkFine() {
+        //  fine
         
         let app = XCUIApplication()
         let element = app.children(matching: .window).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element
@@ -37,23 +37,22 @@ class wordblocksUITests: XCTestCase {
         app.alerts["Welcome to Word Blocks!"].buttons["🏁 Start Playing 🏁"].tap()
         
         let redButtonNormalButton = app.buttons["red button normal"]
+        let greenButtonNormalButton = app.buttons["green button normal"]
+        
         redButtonNormalButton.tap()
         element.tap()
-        redButtonNormalButton.tap()
-        element.tap()
-        redButtonNormalButton.tap()
+        greenButtonNormalButton.tap()
         element.tap()
         
-        let greenButtonNormalButton = app.buttons["green button normal"]
-        greenButtonNormalButton.tap()
+        redButtonNormalButton.tap()
         element.tap()
         greenButtonNormalButton.tap()
         element.tap()
-        greenButtonNormalButton.tap()
+        
+        redButtonNormalButton.tap()
         element.tap()
         greenButtonNormalButton.tap()
         element.tap()
-       
     }
     
 }
