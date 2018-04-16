@@ -1,5 +1,8 @@
 👋Hi! Welcome to the Word Blocks Page.
 
+![Word Blocks - Game in Action](/images/start.PNG?raw=true "Game Start!")
+
+
 # What is Word Blocks?
 World Blocks is an iPhone game to learn Spanish (if you already know English). 
 Track your learning progress by a high score! It's super easy to play.
