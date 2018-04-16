@@ -33,6 +33,8 @@ struct WBTurn {
     var turnWord:WBTurnWord
     var gravityPercent:Int
     var gameState:WBGameState
+    
+    //TODO:V2
     //v2    var turnIndex:Int
     //v2    var correctAnsCount:Int
     //v2    var correctMatchedAnsCount:Int

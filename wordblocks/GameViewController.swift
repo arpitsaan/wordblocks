@@ -186,11 +186,11 @@ extension GameViewController: UICollisionBehaviorDelegate {
         //
         //        }
         
-        //word
+        //populate word in the ui
         self.topWordView.setWordData(wordData: Manager.currentTurn.turnWord.topWordText)
         self.bottomWordView.setWordData(wordData: Manager.currentTurn.turnWord.bottomWordText)
         
-        //animation
+        //setup animation physics
         let itemBehaviour = UIDynamicItemBehavior(items: [topWordView, bottomWordView])
         itemBehaviour.allowsRotation = true
         
@@ -388,7 +388,6 @@ extension GameViewController {
     }
     
     //gameover
-    //FIXME:Stop Collision
     func gameOver() {
         didCollideOnce = false
         disableCollideAction = false

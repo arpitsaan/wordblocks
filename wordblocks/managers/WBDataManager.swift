@@ -12,6 +12,7 @@ class WBDataManager: NSObject {
     //properties
     private static var allWords = [WBWord]()
     
+    //Public method to get all words
     public static func getAllWords() -> [WBWord] {
         if allWords.count == 0 {
             allWords = WBDataManager.loadWordsFromFile(name: "words")

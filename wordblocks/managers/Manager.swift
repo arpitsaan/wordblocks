@@ -15,7 +15,7 @@ enum WBUserAction {
     case tapTick
     case tapCross
     case tapScreen
-    case collision
+    case collision //no user action
 }
 
 enum WBGameState {
@@ -26,6 +26,9 @@ enum WBGameState {
     case lost
     case collision
     case gameover
+    
+    //TODO:V2
+    //    case paused
 }
 
 extension Notification.Name {
@@ -57,7 +60,7 @@ class Manager: NSObject {
             gravityPercent: 1,
             gameState: .welcome)
         
-        //notification broadcast
+        //notification broadcast - begin the game
         let updateNotification = Notification.init(name: .gameManager)
         NotificationCenter.default.post(updateNotification)
     }
@@ -96,7 +99,7 @@ class Manager: NSObject {
         case .tapStart:
             nextTurn.gameState = .start
         
-        //pause state - v2
+        //TODO: V2 - pause state
         case .tapResume:
             nextTurn.gameState = .active
         
@@ -115,12 +118,19 @@ class Manager: NSObject {
         
         //words collided
         case .collision:
-            nextTurn.gameState = .collision
             nextTurn.activeLives -= 1
+            
+            if (nextTurn.activeLives <= 0) {
+                nextTurn.gameState = .gameover
+            }
+            else{
+                nextTurn.gameState = .collision
+            }
             
         //tap tick
         case .tapTick:
             if(Manager.currentTurn.turnWord.isMatching) {
+                //FIXME:CREATE method correct
                 nextTurn.score += WBGameConfig.scorePerWord.intValue
                 nextTurn.gravityPercent += WBGameConfig.difficultyFactor.intValue
                 nextTurn.gameState = .won
@@ -132,18 +142,35 @@ class Manager: NSObject {
                 }
             }
             else {
+                //FIXME:CREATE method for incorrect
                 nextTurn.activeLives -= 1
-                nextTurn.gameState = .lost
+                
+                if (nextTurn.activeLives <= 0) {
+                    nextTurn.gameState = .gameover
+                }
+                else {
+                    nextTurn.gameState = .lost
+                    
+                }
             }
             
            
         //tap cross
         case .tapCross:
             if(Manager.currentTurn.turnWord.isMatching) {
-                nextTurn.gameState = .lost
+                //FIXME:CREATE method for incorrect
                 nextTurn.activeLives -= 1
+                
+                if (nextTurn.activeLives <= 0) {
+                    nextTurn.gameState = .gameover
+                }
+                else {
+                    nextTurn.gameState = .lost
+                    
+                }
             }
             else {
+                //FIXME:CREATE method correct
                 nextTurn.score += WBGameConfig.scorePerWord.intValue
                 nextTurn.gravityPercent += WBGameConfig.difficultyFactor.intValue
                 nextTurn.gameState = .won
@@ -164,14 +191,12 @@ class Manager: NSObject {
             }
         }
         
-        //game over
+        //check if game over
         if(nextTurn.gameState == .lost || nextTurn.gameState == .collision) {
-            if (nextTurn.activeLives <= 0) {
-                nextTurn.gameState = .gameover
-            }
+         
         }
         
-        //did change state
+        //check if change state
         let didChangeState = currentTurn.gameState != nextTurn.gameState
         
         previousTurn = currentTurn
