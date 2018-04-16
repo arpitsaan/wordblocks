@@ -61,7 +61,7 @@
 		E8033C49208125D7001CDF91 /* WBConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBConstants.swift; sourceTree = "<group>"; };
 		E8033C4D20813138001CDF91 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = wordblocks/Assets.xcassets; sourceTree = "<group>"; };
 		E8033C4F2081316E001CDF91 /* WBInputControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBInputControl.swift; sourceTree = "<group>"; };
-		E80BA176207ED5CC009FA024 /* wordblocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wordblocks.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E80BA176207ED5CC009FA024 /* Word Blocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Word Blocks.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E80BA179207ED5CC009FA024 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E80BA17B207ED5CC009FA024 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		E80BA181207ED5CC009FA024 /* wordblocks.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = wordblocks.xcdatamodel; sourceTree = "<group>"; };
@@ -142,7 +142,7 @@
 		E80BA177207ED5CC009FA024 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E80BA176207ED5CC009FA024 /* wordblocks.app */,
+				E80BA176207ED5CC009FA024 /* Word Blocks.app */,
 				E80BA18D207ED5CC009FA024 /* wordblocksTests.xctest */,
 				E80BA198207ED5CC009FA024 /* wordblocksUITests.xctest */,
 			);
@@ -219,9 +219,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E80BA175207ED5CC009FA024 /* wordblocks */ = {
+		E80BA175207ED5CC009FA024 /* Word Blocks */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E80BA1A1207ED5CC009FA024 /* Build configuration list for PBXNativeTarget "wordblocks" */;
+			buildConfigurationList = E80BA1A1207ED5CC009FA024 /* Build configuration list for PBXNativeTarget "Word Blocks" */;
 			buildPhases = (
 				E80BA172207ED5CC009FA024 /* Sources */,
 				E80BA173207ED5CC009FA024 /* Frameworks */,
@@ -231,9 +231,9 @@
 			);
 			dependencies = (
 			);
-			name = wordblocks;
+			name = "Word Blocks";
 			productName = wordblocks;
-			productReference = E80BA176207ED5CC009FA024 /* wordblocks.app */;
+			productReference = E80BA176207ED5CC009FA024 /* Word Blocks.app */;
 			productType = "com.apple.product-type.application";
 		};
 		E80BA18C207ED5CC009FA024 /* wordblocksTests */ = {
@@ -311,7 +311,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E80BA175207ED5CC009FA024 /* wordblocks */,
+				E80BA175207ED5CC009FA024 /* Word Blocks */,
 				E80BA18C207ED5CC009FA024 /* wordblocksTests */,
 				E80BA197207ED5CC009FA024 /* wordblocksUITests */,
 			);
@@ -393,12 +393,12 @@
 /* Begin PBXTargetDependency section */
 		E80BA18F207ED5CC009FA024 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E80BA175207ED5CC009FA024 /* wordblocks */;
+			target = E80BA175207ED5CC009FA024 /* Word Blocks */;
 			targetProxy = E80BA18E207ED5CC009FA024 /* PBXContainerItemProxy */;
 		};
 		E80BA19A207ED5CC009FA024 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E80BA175207ED5CC009FA024 /* wordblocks */;
+			target = E80BA175207ED5CC009FA024 /* Word Blocks */;
 			targetProxy = E80BA199207ED5CC009FA024 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -623,7 +623,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E80BA1A1207ED5CC009FA024 /* Build configuration list for PBXNativeTarget "wordblocks" */ = {
+		E80BA1A1207ED5CC009FA024 /* Build configuration list for PBXNativeTarget "Word Blocks" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E80BA1A2207ED5CC009FA024 /* Debug */,
