@@ -18,7 +18,7 @@ enum WBGameConfig {
             case .gravityFactor: return 1.1
             case .difficultyFactor: return 1.1
             
-            //33% probability of getting matched words
+            //33% bias of getting matched words
             case .matchingBias: return 0.33
             
             //1 score increase per correct ans

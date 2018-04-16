@@ -28,9 +28,7 @@ class wordblocksUITests: XCTestCase {
         super.tearDown()
     }
     
-    func testIfInitialSixRoundsWorkFine() {
-        //  fine
-        
+    func testIfInitialSixRoundsWork() {
         let app = XCUIApplication()
         let element = app.children(matching: .window).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element
 

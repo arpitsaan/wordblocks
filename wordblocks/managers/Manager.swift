@@ -89,7 +89,7 @@ class Manager: NSObject {
         return WBTurnWord.init(topWord: randomTopWord, bottomWord: randomBottomWord, isMatching: shouldMatch)
     }
     
-    //Next Turn State Machine
+    //Next Turn State Machine - Update turn based on Action
     public static func updateTurn(action:WBUserAction) {
         
         var nextTurn = currentTurn
@@ -189,11 +189,6 @@ class Manager: NSObject {
                 || currentTurn.gameState == .collision {
                 nextTurn.gameState = .active
             }
-        }
-        
-        //check if game over
-        if(nextTurn.gameState == .lost || nextTurn.gameState == .collision) {
-         
         }
         
         //check if change state

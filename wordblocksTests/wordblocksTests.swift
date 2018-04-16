@@ -12,30 +12,32 @@ import XCTest
 class wordblocksTests: XCTestCase {
     override func setUp() {
         super.setUp()
-        //set initial turn
-        //set initial state of data manager
-        //load high score
-        
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        Manager.beginGame()
     }
     
-    override func tearDown() {
-        //TODO:view did appear in 10 seconds
-        
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        
-        //TODO:RESET GLOBAL STATE
-        //TODO:RESET GLOBAL STATE
-        
-        super.tearDown()
+    //------------------
+    // game start checks
+    //------------------
+    func testWordsJSONDataIsLoaded() {
+        XCTAssert(WBDataManager.getAllWords().count > 0, "expect JSON file loads on game start")
     }
     
-    func testExample() {
-        //
-        
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testUserScoreIsZeroOnGameStart() {
+        XCTAssert(Manager.currentTurn.activeLives > 0, "expect user has no score on game start")
     }
+    
+    func testGameHasLivesOnStart() {
+        XCTAssert(Manager.currentTurn.activeLives > 0, "expect user has lives to play on game start")
+    }
+    
+    func testGameHasNonEmptyTopAndBottomWordsOnStart() {
+        XCTAssert(Manager.currentTurn.turnWord.topWordText.count > 0 , "expect top word is not empty on game start")
+        XCTAssert(Manager.currentTurn.turnWord.bottomWordText.count > 0 , "expect bottom word is not empty on game start")
+    }
+    
+    //------------------
+    // game start checks
+    //------------------
     
     func testPerformanceExample() {
         //TODO:view did appear in 10 seconds
