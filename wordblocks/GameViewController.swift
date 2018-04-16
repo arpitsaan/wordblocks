@@ -26,6 +26,7 @@ class GameViewController: UIViewController, WBInputControlDelegate {
     var scoreView = WBScoreView()
     var winLabel = UILabel()
     var loseLabel = UILabel()
+    var crashedLabel = UILabel()
     
     var didCollideOnce:Bool = false
     var disableCollideAction:Bool = true
@@ -81,6 +82,16 @@ extension GameViewController {
         //tap gesture
         let tapGesture = UITapGestureRecognizer.init(target: self, action:#selector(didTapScreen))
         containerView.addGestureRecognizer(tapGesture)
+        
+        //collided label
+        crashedLabel = UILabel.init()
+        containerView.addSubview(crashedLabel)
+        crashedLabel.font = UIFont(name: "DINAlternate-Bold", size: 20)
+        crashedLabel.textColor = WBColor.bgDark
+        crashedLabel.addCenterXConstraint(toView: containerView)
+        crashedLabel.addCenterYConstraint(toView: containerView, constant: 50)
+        crashedLabel.text = "💥CRASHED!💥 · Tap to continue…"
+        crashedLabel.alpha = 0
         
         //win label
         winLabel = UILabel.init()
@@ -185,7 +196,7 @@ extension GameViewController: UICollisionBehaviorDelegate {
         
         animator = UIDynamicAnimator(referenceView: view)
         gravity = UIGravityBehavior(items: [topWordView])
-        gravity.magnitude = CGFloat(Double(Manager.currentTurn.gravityPercent)/80.0)
+        gravity.magnitude = CGFloat(Double(Manager.currentTurn.gravityPercent)/72.0)
         
         animator.addBehavior(gravity)
         
@@ -194,20 +205,17 @@ extension GameViewController: UICollisionBehaviorDelegate {
         collision.translatesReferenceBoundsIntoBoundary = true
         animator.addBehavior(collision)
     }
-    
-    func collisionBehavior(_ behavior: UICollisionBehavior, endedContactFor item: UIDynamicItem, withBoundaryIdentifier identifier: NSCopying?) {
-//
-//    }
-//    func collisionBehavior(_ behavior: UICollisionBehavior, endedContactFor item1: UIDynamicItem, with item2: UIDynamicItem) {
-        
-    print("[WB] Collision!")
 
+    func collisionBehavior(_ behavior: UICollisionBehavior, beganContactFor item1: UIDynamicItem, with item2: UIDynamicItem, at p: CGPoint) {
+        
+        print("[WB] Collision!")
         if !self.didCollideOnce {
             self.didCollideOnce = true
             if self.disableCollideAction == false {
                 Manager.updateTurn(action: .collision)
             }
         }
+        
     }
 }
 
@@ -263,6 +271,9 @@ extension GameViewController {
             
             case .lost:
                 handleLoseState()
+        
+            case .collision:
+                handleCollisionState()
             
             case .gameover:
                 gameOver()
@@ -280,6 +291,7 @@ extension GameViewController {
     func welcomeUser() {
         self.winLabel.alpha = 0
         self.loseLabel.alpha = 0
+        self.crashedLabel.alpha = 0
         
         disableCollideAction = false
         didCollideOnce = false
@@ -328,6 +340,7 @@ extension GameViewController {
     func handleWinState() {
         self.disableCollideAction = true
         self.loseLabel.alpha = 0
+        self.crashedLabel.alpha = 0
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.1, options: .allowUserInteraction, animations: {
             
             self.view.backgroundColor = WBColor.green
@@ -346,6 +359,7 @@ extension GameViewController {
     func handleLoseState() {
         self.disableCollideAction = true
         self.winLabel.alpha = 0
+        self.crashedLabel.alpha = 0
         UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.1, options: .allowUserInteraction, animations: {
             self.view.backgroundColor = WBColor.red
             self.inputControl.alpha = 0
@@ -354,6 +368,22 @@ extension GameViewController {
             self.livesView.transform = CGAffineTransform.init(scaleX: 2.5, y: 2.5)
         }) { (true) in
             print("[WB] Lose state animation completed")
+        }
+    }
+    
+    //collision
+    func handleCollisionState() {
+        self.disableCollideAction = true
+        self.loseLabel.alpha = 0
+        self.winLabel.alpha = 0
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.25, initialSpringVelocity: 0.1, options: .allowUserInteraction, animations: {
+            self.view.backgroundColor = WBColor.red
+            self.inputControl.alpha = 0
+            self.scoreView.alpha = 0
+            self.crashedLabel.alpha = 1
+            self.livesView.transform = CGAffineTransform.init(scaleX: 2.5, y: 2.5)
+        }) { (true) in
+            print("[WB] Collision state animation completed")
         }
     }
     
@@ -423,6 +453,7 @@ extension GameViewController {
         }
         self.winLabel.alpha = 0
         self.loseLabel.alpha = 0
+        self.crashedLabel.alpha = 0
         self.didCollideOnce = false
         self.disableCollideAction = false
         

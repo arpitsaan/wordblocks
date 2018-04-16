@@ -24,6 +24,7 @@ enum WBGameState {
     case active
     case won
     case lost
+    case collision
     case gameover
 }
 
@@ -91,12 +92,15 @@ class Manager: NSObject {
         var nextTurn = currentTurn
         
         switch action {
+        //game start
         case .tapStart:
             nextTurn.gameState = .start
-            
+        
+        //pause state - v2
         case .tapResume:
             nextTurn.gameState = .active
         
+        //restart after game over
         case .tapRestart:
             remainingWords = WBDataManager.getAllWords()
             currentTurn = WBTurn.init(
@@ -108,11 +112,13 @@ class Manager: NSObject {
             nextTurn = currentTurn
 
             nextTurn.gameState = .start
-            
+        
+        //words collided
         case .collision:
-            nextTurn.gameState = .lost
+            nextTurn.gameState = .collision
             nextTurn.activeLives -= 1
             
+        //tap tick
         case .tapTick:
             if(Manager.currentTurn.turnWord.isMatching) {
                 nextTurn.score += WBGameConfig.scorePerWord.intValue
@@ -130,7 +136,8 @@ class Manager: NSObject {
                 nextTurn.gameState = .lost
             }
             
-            
+           
+        //tap cross
         case .tapCross:
             if(Manager.currentTurn.turnWord.isMatching) {
                 nextTurn.gameState = .lost
@@ -148,22 +155,24 @@ class Manager: NSObject {
                 }
             }
             
+        //tap screen
         case .tapScreen:
-            if currentTurn.gameState == .won || currentTurn.gameState == .lost {
+            if currentTurn.gameState == .won
+                || currentTurn.gameState == .lost
+                || currentTurn.gameState == .collision {
                 nextTurn.gameState = .active
             }
         }
         
         //game over
-        if(nextTurn.gameState == .lost) {
+        if(nextTurn.gameState == .lost || nextTurn.gameState == .collision) {
             if (nextTurn.activeLives <= 0) {
                 nextTurn.gameState = .gameover
             }
         }
         
         //did change state
-        let didChangeState = currentTurn.gameState != nextTurn.gameState ||
-            previousTurn!.gameState == WBGameState.gameover
+        let didChangeState = currentTurn.gameState != nextTurn.gameState
         
         previousTurn = currentTurn
         currentTurn = nextTurn
