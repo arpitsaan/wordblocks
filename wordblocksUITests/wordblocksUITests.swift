@@ -2,7 +2,7 @@
 //  wordblocksUITests.swift
 //  wordblocksUITests
 //
-//  Created by zom on 12/04/18.
+//  Created by Arpit Agarwal on 12/04/18.
 //  Copyright © 2018 acyooman. All rights reserved.
 //
 
@@ -30,7 +30,30 @@ class wordblocksUITests: XCTestCase {
     
     func testExample() {
         // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        let app = XCUIApplication()
+        let element = app.children(matching: .window).element(boundBy: 0).children(matching: .other).element.children(matching: .other).element
+
+        app.alerts["Welcome to Word Blocks!"].buttons["🏁 Start Playing 🏁"].tap()
+        
+        let redButtonNormalButton = app.buttons["red button normal"]
+        redButtonNormalButton.tap()
+        element.tap()
+        redButtonNormalButton.tap()
+        element.tap()
+        redButtonNormalButton.tap()
+        element.tap()
+        
+        let greenButtonNormalButton = app.buttons["green button normal"]
+        greenButtonNormalButton.tap()
+        element.tap()
+        greenButtonNormalButton.tap()
+        element.tap()
+        greenButtonNormalButton.tap()
+        element.tap()
+        greenButtonNormalButton.tap()
+        element.tap()
+       
     }
     
 }
