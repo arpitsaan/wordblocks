@@ -76,7 +76,7 @@ Depending on the user action provided to this method, the current game state jum
 ## Time Invested
 - Concept : Word Blocks took 3.5 hours to design, with the document.
 - Game Mechanics : Took 1 hour to architect a State Machine for the whole game.
-- Model Layer : 2 Hours, with the architure of the word.
+- Model Layer : 3 Hours, with the architecture of the word.
 - Views : 3 Hours including gravity animation.
 - Automated Tests : 1 hour for UI Smoke test and unit tests on the gameplay.
 
