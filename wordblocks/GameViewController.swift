@@ -88,7 +88,7 @@ extension GameViewController {
         winLabel.font = UIFont(name: "DINAlternate-Bold", size: 20)
         winLabel.textColor = WBColor.bgDark
         winLabel.addCenterXConstraint(toView: containerView)
-        winLabel.addCenterYConstraint(toView: containerView, constant: -50)
+        winLabel.addCenterYConstraint(toView: containerView, constant: 50)
         winLabel.text = "🙌 CORRECT · Tap to continue…"
         winLabel.alpha = 0
         
@@ -98,7 +98,7 @@ extension GameViewController {
         loseLabel.font = UIFont(name: "DINAlternate-Bold", size: 20)
         loseLabel.textColor = WBColor.bgDark
         loseLabel.addCenterXConstraint(toView: containerView)
-        loseLabel.addCenterYConstraint(toView: containerView, constant: -50)
+        loseLabel.addCenterYConstraint(toView: containerView, constant: 50)
         loseLabel.text = "💔 INCORRECT · Tap to continue…"
         loseLabel.alpha = 0
         
