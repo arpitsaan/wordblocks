@@ -12,13 +12,30 @@
 		E8033C2E2080CE45001CDF91 /* UIColor+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8033C2D2080CE45001CDF91 /* UIColor+Helper.swift */; };
 		E8033C40208106D6001CDF91 /* WBCommons.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8033C3F208106D6001CDF91 /* WBCommons.swift */; };
 		E8033C4420810918001CDF91 /* WBPauseControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8033C4320810918001CDF91 /* WBPauseControl.swift */; };
+		E8033C4620811ADD001CDF91 /* WBLivesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8033C4520811ADD001CDF91 /* WBLivesView.swift */; };
+		E8033C4820811B04001CDF91 /* WBLifeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8033C4720811B04001CDF91 /* WBLifeView.swift */; };
+		E8033C4A208125D7001CDF91 /* WBConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8033C49208125D7001CDF91 /* WBConstants.swift */; };
+		E8033C4E20813138001CDF91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8033C4D20813138001CDF91 /* Assets.xcassets */; };
+		E8033C502081316E001CDF91 /* WBInputControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8033C4F2081316E001CDF91 /* WBInputControl.swift */; };
 		E80BA17A207ED5CC009FA024 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80BA179207ED5CC009FA024 /* AppDelegate.swift */; };
 		E80BA17C207ED5CC009FA024 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80BA17B207ED5CC009FA024 /* GameViewController.swift */; };
 		E80BA182207ED5CC009FA024 /* wordblocks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E80BA180207ED5CC009FA024 /* wordblocks.xcdatamodeld */; };
-		E80BA184207ED5CC009FA024 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E80BA183207ED5CC009FA024 /* Assets.xcassets */; };
-		E80BA187207ED5CC009FA024 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E80BA185207ED5CC009FA024 /* LaunchScreen.storyboard */; };
 		E80BA192207ED5CC009FA024 /* wordblocksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80BA191207ED5CC009FA024 /* wordblocksTests.swift */; };
 		E80BA19D207ED5CC009FA024 /* wordblocksUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80BA19C207ED5CC009FA024 /* wordblocksUITests.swift */; };
+		E87FE5A92082A7AB00578474 /* WBGameConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87FE5A82082A7AB00578474 /* WBGameConfig.swift */; };
+		E87FE5AB2082A90500578474 /* WBTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87FE5AA2082A90500578474 /* WBTurn.swift */; };
+		E87FE5AD2082AACC00578474 /* WBWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87FE5AC2082AACC00578474 /* WBWord.swift */; };
+		E87FE5B12082ACB200578474 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87FE5B02082ACB200578474 /* Manager.swift */; };
+		E87FE5B72083558B00578474 /* Array+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87FE5B62083558B00578474 /* Array+Additions.swift */; };
+		E87FE5CB2084EBFF00578474 /* WBTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87FE5AA2082A90500578474 /* WBTurn.swift */; };
+		E87FE5CC2084EC0100578474 /* WBWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87FE5AC2082AACC00578474 /* WBWord.swift */; };
+		E87FE5CD2084EC0400578474 /* WBGameConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87FE5A82082A7AB00578474 /* WBGameConfig.swift */; };
+		E87FE5CE2084EC0600578474 /* WBDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E897FAD020821EAA00F7D6A1 /* WBDataManager.swift */; };
+		E87FE5E42084F0CB00578474 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87FE5B02082ACB200578474 /* Manager.swift */; };
+		E87FE5E52084F25300578474 /* Array+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87FE5B62083558B00578474 /* Array+Additions.swift */; };
+		E897FABA20813EE100F7D6A1 /* WBScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E897FAB920813EE100F7D6A1 /* WBScoreView.swift */; };
+		E897FAD120821EAA00F7D6A1 /* WBDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E897FAD020821EAA00F7D6A1 /* WBDataManager.swift */; };
+		E897FAD320821F3300F7D6A1 /* words.json in Resources */ = {isa = PBXBuildFile; fileRef = E897FAD220821F3300F7D6A1 /* words.json */; };
 		E8C70D9020802C33002D22E0 /* WBWordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C70D8F20802C33002D22E0 /* WBWordView.swift */; };
 /* End PBXBuildFile section */
 
@@ -45,12 +62,15 @@
 		E8033C2D2080CE45001CDF91 /* UIColor+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Helper.swift"; sourceTree = "<group>"; };
 		E8033C3F208106D6001CDF91 /* WBCommons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBCommons.swift; sourceTree = "<group>"; };
 		E8033C4320810918001CDF91 /* WBPauseControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBPauseControl.swift; sourceTree = "<group>"; };
-		E80BA176207ED5CC009FA024 /* wordblocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wordblocks.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8033C4520811ADD001CDF91 /* WBLivesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBLivesView.swift; sourceTree = "<group>"; };
+		E8033C4720811B04001CDF91 /* WBLifeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBLifeView.swift; sourceTree = "<group>"; };
+		E8033C49208125D7001CDF91 /* WBConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBConstants.swift; sourceTree = "<group>"; };
+		E8033C4D20813138001CDF91 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = wordblocks/Assets.xcassets; sourceTree = "<group>"; };
+		E8033C4F2081316E001CDF91 /* WBInputControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBInputControl.swift; sourceTree = "<group>"; };
+		E80BA176207ED5CC009FA024 /* Word Blocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Word Blocks.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E80BA179207ED5CC009FA024 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E80BA17B207ED5CC009FA024 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		E80BA181207ED5CC009FA024 /* wordblocks.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = wordblocks.xcdatamodel; sourceTree = "<group>"; };
-		E80BA183207ED5CC009FA024 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E80BA186207ED5CC009FA024 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E80BA188207ED5CC009FA024 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E80BA18D207ED5CC009FA024 /* wordblocksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = wordblocksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E80BA191207ED5CC009FA024 /* wordblocksTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wordblocksTests.swift; sourceTree = "<group>"; };
@@ -58,6 +78,14 @@
 		E80BA198207ED5CC009FA024 /* wordblocksUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = wordblocksUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E80BA19C207ED5CC009FA024 /* wordblocksUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wordblocksUITests.swift; sourceTree = "<group>"; };
 		E80BA19E207ED5CC009FA024 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E87FE5A82082A7AB00578474 /* WBGameConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBGameConfig.swift; sourceTree = "<group>"; };
+		E87FE5AA2082A90500578474 /* WBTurn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBTurn.swift; sourceTree = "<group>"; };
+		E87FE5AC2082AACC00578474 /* WBWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBWord.swift; sourceTree = "<group>"; };
+		E87FE5B02082ACB200578474 /* Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
+		E87FE5B62083558B00578474 /* Array+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Additions.swift"; sourceTree = "<group>"; };
+		E897FAB920813EE100F7D6A1 /* WBScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBScoreView.swift; sourceTree = "<group>"; };
+		E897FAD020821EAA00F7D6A1 /* WBDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBDataManager.swift; sourceTree = "<group>"; };
+		E897FAD220821F3300F7D6A1 /* words.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = words.json; sourceTree = "<group>"; };
 		E8C70D8F20802C33002D22E0 /* WBWordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBWordView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -91,6 +119,7 @@
 			children = (
 				E8033C282080BF48001CDF91 /* UIView+AutoLayoutHelper.swift */,
 				E8033C2D2080CE45001CDF91 /* UIColor+Helper.swift */,
+				E87FE5B62083558B00578474 /* Array+Additions.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -100,6 +129,7 @@
 			children = (
 				E8033C2B2080CD6B001CDF91 /* WBColor.swift */,
 				E8033C3F208106D6001CDF91 /* WBCommons.swift */,
+				E8033C49208125D7001CDF91 /* WBConstants.swift */,
 			);
 			path = commons;
 			sourceTree = "<group>";
@@ -107,6 +137,7 @@
 		E80BA16D207ED5CC009FA024 = {
 			isa = PBXGroup;
 			children = (
+				E8033C4D20813138001CDF91 /* Assets.xcassets */,
 				E80BA178207ED5CC009FA024 /* wordblocks */,
 				E80BA190207ED5CC009FA024 /* wordblocksTests */,
 				E80BA19B207ED5CC009FA024 /* wordblocksUITests */,
@@ -117,7 +148,7 @@
 		E80BA177207ED5CC009FA024 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E80BA176207ED5CC009FA024 /* wordblocks.app */,
+				E80BA176207ED5CC009FA024 /* Word Blocks.app */,
 				E80BA18D207ED5CC009FA024 /* wordblocksTests.xctest */,
 				E80BA198207ED5CC009FA024 /* wordblocksUITests.xctest */,
 			);
@@ -127,13 +158,13 @@
 		E80BA178207ED5CC009FA024 /* wordblocks */ = {
 			isa = PBXGroup;
 			children = (
+				E87FE5A52082A62A00578474 /* models */,
+				E897FACD20821E2800F7D6A1 /* managers */,
 				E8033C2A2080CD33001CDF91 /* commons */,
 				E8033C272080AC5D001CDF91 /* extensions */,
 				E8C70D8E20802B62002D22E0 /* views */,
-				E80BA179207ED5CC009FA024 /* AppDelegate.swift */,
-				E80BA17B207ED5CC009FA024 /* GameViewController.swift */,
-				E80BA183207ED5CC009FA024 /* Assets.xcassets */,
-				E80BA185207ED5CC009FA024 /* LaunchScreen.storyboard */,
+				E87FE5E62084F8AF00578474 /* core */,
+				E897FAD220821F3300F7D6A1 /* words.json */,
 				E80BA188207ED5CC009FA024 /* Info.plist */,
 				E80BA180207ED5CC009FA024 /* wordblocks.xcdatamodeld */,
 			);
@@ -158,11 +189,43 @@
 			path = wordblocksUITests;
 			sourceTree = "<group>";
 		};
+		E87FE5A52082A62A00578474 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				E87FE5A82082A7AB00578474 /* WBGameConfig.swift */,
+				E87FE5AA2082A90500578474 /* WBTurn.swift */,
+				E87FE5AC2082AACC00578474 /* WBWord.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		E87FE5E62084F8AF00578474 /* core */ = {
+			isa = PBXGroup;
+			children = (
+				E80BA179207ED5CC009FA024 /* AppDelegate.swift */,
+				E80BA17B207ED5CC009FA024 /* GameViewController.swift */,
+			);
+			path = core;
+			sourceTree = "<group>";
+		};
+		E897FACD20821E2800F7D6A1 /* managers */ = {
+			isa = PBXGroup;
+			children = (
+				E897FAD020821EAA00F7D6A1 /* WBDataManager.swift */,
+				E87FE5B02082ACB200578474 /* Manager.swift */,
+			);
+			path = managers;
+			sourceTree = "<group>";
+		};
 		E8C70D8E20802B62002D22E0 /* views */ = {
 			isa = PBXGroup;
 			children = (
 				E8C70D8F20802C33002D22E0 /* WBWordView.swift */,
 				E8033C4320810918001CDF91 /* WBPauseControl.swift */,
+				E8033C4520811ADD001CDF91 /* WBLivesView.swift */,
+				E8033C4720811B04001CDF91 /* WBLifeView.swift */,
+				E8033C4F2081316E001CDF91 /* WBInputControl.swift */,
+				E897FAB920813EE100F7D6A1 /* WBScoreView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -170,9 +233,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E80BA175207ED5CC009FA024 /* wordblocks */ = {
+		E80BA175207ED5CC009FA024 /* Word Blocks */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E80BA1A1207ED5CC009FA024 /* Build configuration list for PBXNativeTarget "wordblocks" */;
+			buildConfigurationList = E80BA1A1207ED5CC009FA024 /* Build configuration list for PBXNativeTarget "Word Blocks" */;
 			buildPhases = (
 				E80BA172207ED5CC009FA024 /* Sources */,
 				E80BA173207ED5CC009FA024 /* Frameworks */,
@@ -182,9 +245,9 @@
 			);
 			dependencies = (
 			);
-			name = wordblocks;
+			name = "Word Blocks";
 			productName = wordblocks;
-			productReference = E80BA176207ED5CC009FA024 /* wordblocks.app */;
+			productReference = E80BA176207ED5CC009FA024 /* Word Blocks.app */;
 			productType = "com.apple.product-type.application";
 		};
 		E80BA18C207ED5CC009FA024 /* wordblocksTests */ = {
@@ -262,7 +325,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E80BA175207ED5CC009FA024 /* wordblocks */,
+				E80BA175207ED5CC009FA024 /* Word Blocks */,
 				E80BA18C207ED5CC009FA024 /* wordblocksTests */,
 				E80BA197207ED5CC009FA024 /* wordblocksUITests */,
 			);
@@ -274,8 +337,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E80BA187207ED5CC009FA024 /* LaunchScreen.storyboard in Resources */,
-				E80BA184207ED5CC009FA024 /* Assets.xcassets in Resources */,
+				E897FAD320821F3300F7D6A1 /* words.json in Resources */,
+				E8033C4E20813138001CDF91 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,15 +363,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E87FE5AD2082AACC00578474 /* WBWord.swift in Sources */,
 				E8033C4420810918001CDF91 /* WBPauseControl.swift in Sources */,
 				E8033C2C2080CD6B001CDF91 /* WBColor.swift in Sources */,
 				E80BA182207ED5CC009FA024 /* wordblocks.xcdatamodeld in Sources */,
 				E80BA17C207ED5CC009FA024 /* GameViewController.swift in Sources */,
+				E87FE5B72083558B00578474 /* Array+Additions.swift in Sources */,
 				E80BA17A207ED5CC009FA024 /* AppDelegate.swift in Sources */,
+				E8033C4820811B04001CDF91 /* WBLifeView.swift in Sources */,
 				E8033C2E2080CE45001CDF91 /* UIColor+Helper.swift in Sources */,
+				E8033C4620811ADD001CDF91 /* WBLivesView.swift in Sources */,
 				E8C70D9020802C33002D22E0 /* WBWordView.swift in Sources */,
 				E8033C292080BF48001CDF91 /* UIView+AutoLayoutHelper.swift in Sources */,
+				E87FE5B12082ACB200578474 /* Manager.swift in Sources */,
+				E8033C4A208125D7001CDF91 /* WBConstants.swift in Sources */,
+				E87FE5AB2082A90500578474 /* WBTurn.swift in Sources */,
+				E87FE5A92082A7AB00578474 /* WBGameConfig.swift in Sources */,
 				E8033C40208106D6001CDF91 /* WBCommons.swift in Sources */,
+				E897FABA20813EE100F7D6A1 /* WBScoreView.swift in Sources */,
+				E897FAD120821EAA00F7D6A1 /* WBDataManager.swift in Sources */,
+				E8033C502081316E001CDF91 /* WBInputControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,7 +390,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E87FE5CE2084EC0600578474 /* WBDataManager.swift in Sources */,
+				E87FE5CC2084EC0100578474 /* WBWord.swift in Sources */,
 				E80BA192207ED5CC009FA024 /* wordblocksTests.swift in Sources */,
+				E87FE5E52084F25300578474 /* Array+Additions.swift in Sources */,
+				E87FE5E42084F0CB00578474 /* Manager.swift in Sources */,
+				E87FE5CD2084EC0400578474 /* WBGameConfig.swift in Sources */,
+				E87FE5CB2084EBFF00578474 /* WBTurn.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,26 +413,15 @@
 /* Begin PBXTargetDependency section */
 		E80BA18F207ED5CC009FA024 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E80BA175207ED5CC009FA024 /* wordblocks */;
+			target = E80BA175207ED5CC009FA024 /* Word Blocks */;
 			targetProxy = E80BA18E207ED5CC009FA024 /* PBXContainerItemProxy */;
 		};
 		E80BA19A207ED5CC009FA024 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E80BA175207ED5CC009FA024 /* wordblocks */;
+			target = E80BA175207ED5CC009FA024 /* Word Blocks */;
 			targetProxy = E80BA199207ED5CC009FA024 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		E80BA185207ED5CC009FA024 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E80BA186207ED5CC009FA024 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		E80BA19F207ED5CC009FA024 /* Debug */ = {
@@ -466,6 +535,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L2VF9Y9HZL;
 				INFOPLIST_FILE = wordblocks/Info.plist;
@@ -482,6 +552,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L2VF9Y9HZL;
 				INFOPLIST_FILE = wordblocks/Info.plist;
@@ -507,7 +578,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/wordblocks.app/wordblocks";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Word Blocks.app/Word Blocks";
 			};
 			name = Debug;
 		};
@@ -524,7 +595,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/wordblocks.app/wordblocks";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Word Blocks.app/Word Blocks";
 			};
 			name = Release;
 		};
@@ -572,7 +643,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E80BA1A1207ED5CC009FA024 /* Build configuration list for PBXNativeTarget "wordblocks" */ = {
+		E80BA1A1207ED5CC009FA024 /* Build configuration list for PBXNativeTarget "Word Blocks" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E80BA1A2207ED5CC009FA024 /* Debug */,
