@@ -68,10 +68,9 @@ Word Blocks has single source of truth for the views in the whole app. I archite
     
 - A Manager class runs the whole gameplay. It has in in-built state machine for the whole game logic.
 This method updates a model with a user action, and broadcasts a notification to the whole app to update views.
-`
-    public static func updateTurn(action:WBUserAction)
 
-`
+`public static func updateTurn(action:WBUserAction)`
+
 Depending on the user action provided to this method, the current game state jumps to a new state with an updated data model. Since there is a persistent single source of truth for data in the whole app, everything remains in sync.
     
 
