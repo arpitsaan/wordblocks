@@ -27,6 +27,12 @@
 		E87FE5AD2082AACC00578474 /* WBWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87FE5AC2082AACC00578474 /* WBWord.swift */; };
 		E87FE5B12082ACB200578474 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87FE5B02082ACB200578474 /* Manager.swift */; };
 		E87FE5B72083558B00578474 /* Array+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87FE5B62083558B00578474 /* Array+Additions.swift */; };
+		E87FE5CB2084EBFF00578474 /* WBTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87FE5AA2082A90500578474 /* WBTurn.swift */; };
+		E87FE5CC2084EC0100578474 /* WBWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87FE5AC2082AACC00578474 /* WBWord.swift */; };
+		E87FE5CD2084EC0400578474 /* WBGameConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87FE5A82082A7AB00578474 /* WBGameConfig.swift */; };
+		E87FE5CE2084EC0600578474 /* WBDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E897FAD020821EAA00F7D6A1 /* WBDataManager.swift */; };
+		E87FE5E42084F0CB00578474 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87FE5B02082ACB200578474 /* Manager.swift */; };
+		E87FE5E52084F25300578474 /* Array+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87FE5B62083558B00578474 /* Array+Additions.swift */; };
 		E897FABA20813EE100F7D6A1 /* WBScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E897FAB920813EE100F7D6A1 /* WBScoreView.swift */; };
 		E897FAD120821EAA00F7D6A1 /* WBDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E897FAD020821EAA00F7D6A1 /* WBDataManager.swift */; };
 		E897FAD320821F3300F7D6A1 /* words.json in Resources */ = {isa = PBXBuildFile; fileRef = E897FAD220821F3300F7D6A1 /* words.json */; };
@@ -157,8 +163,7 @@
 				E8033C2A2080CD33001CDF91 /* commons */,
 				E8033C272080AC5D001CDF91 /* extensions */,
 				E8C70D8E20802B62002D22E0 /* views */,
-				E80BA179207ED5CC009FA024 /* AppDelegate.swift */,
-				E80BA17B207ED5CC009FA024 /* GameViewController.swift */,
+				E87FE5E62084F8AF00578474 /* core */,
 				E897FAD220821F3300F7D6A1 /* words.json */,
 				E80BA188207ED5CC009FA024 /* Info.plist */,
 				E80BA180207ED5CC009FA024 /* wordblocks.xcdatamodeld */,
@@ -192,6 +197,15 @@
 				E87FE5AC2082AACC00578474 /* WBWord.swift */,
 			);
 			path = models;
+			sourceTree = "<group>";
+		};
+		E87FE5E62084F8AF00578474 /* core */ = {
+			isa = PBXGroup;
+			children = (
+				E80BA179207ED5CC009FA024 /* AppDelegate.swift */,
+				E80BA17B207ED5CC009FA024 /* GameViewController.swift */,
+			);
+			path = core;
 			sourceTree = "<group>";
 		};
 		E897FACD20821E2800F7D6A1 /* managers */ = {
@@ -376,7 +390,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E87FE5CE2084EC0600578474 /* WBDataManager.swift in Sources */,
+				E87FE5CC2084EC0100578474 /* WBWord.swift in Sources */,
 				E80BA192207ED5CC009FA024 /* wordblocksTests.swift in Sources */,
+				E87FE5E52084F25300578474 /* Array+Additions.swift in Sources */,
+				E87FE5E42084F0CB00578474 /* Manager.swift in Sources */,
+				E87FE5CD2084EC0400578474 /* WBGameConfig.swift in Sources */,
+				E87FE5CB2084EBFF00578474 /* WBTurn.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -558,7 +578,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/wordblocks.app/wordblocks";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Word Blocks.app/Word Blocks";
 			};
 			name = Debug;
 		};
@@ -575,7 +595,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/wordblocks.app/wordblocks";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Word Blocks.app/Word Blocks";
 			};
 			name = Release;
 		};

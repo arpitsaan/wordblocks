@@ -14,10 +14,15 @@ enum WBGameConfig {
     
     var value: Double {
         switch self {
+            //gravity increases by 10% in each turn
             case .gravityFactor: return 1.1
-            case .matchingBias: return 0.33
-            case .scorePerWord: return 1
             case .difficultyFactor: return 1.1
+            
+            //33% bias of getting matched words
+            case .matchingBias: return 0.33
+            
+            //1 score increase per correct ans
+            case .scorePerWord: return 1
         }
     }
     

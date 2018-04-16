@@ -186,17 +186,18 @@ extension GameViewController: UICollisionBehaviorDelegate {
         //
         //        }
         
-        //word
+        //populate word in the ui
         self.topWordView.setWordData(wordData: Manager.currentTurn.turnWord.topWordText)
         self.bottomWordView.setWordData(wordData: Manager.currentTurn.turnWord.bottomWordText)
         
-        //animation
+        //setup animation physics
         let itemBehaviour = UIDynamicItemBehavior(items: [topWordView, bottomWordView])
         itemBehaviour.allowsRotation = true
         
         animator = UIDynamicAnimator(referenceView: view)
         gravity = UIGravityBehavior(items: [topWordView])
-        gravity.magnitude = CGFloat(Double(Manager.currentTurn.gravityPercent)/72.0)
+        gravity.magnitude = CGFloat(Double(Manager.currentTurn.gravityPercent)/85.0)
+        gravity.angle = 1.54
         
         animator.addBehavior(gravity)
         
@@ -277,6 +278,9 @@ extension GameViewController {
             
             case .gameover:
                 gameOver()
+                
+            case .superWin:
+                break
         }
     }
     
@@ -388,7 +392,6 @@ extension GameViewController {
     }
     
     //gameover
-    //FIXME:Stop Collision
     func gameOver() {
         didCollideOnce = false
         disableCollideAction = false

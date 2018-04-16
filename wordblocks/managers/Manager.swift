@@ -15,7 +15,7 @@ enum WBUserAction {
     case tapTick
     case tapCross
     case tapScreen
-    case collision
+    case collision //no user action
 }
 
 enum WBGameState {
@@ -26,6 +26,10 @@ enum WBGameState {
     case lost
     case collision
     case gameover
+    case superWin
+    
+    //TODO:V2
+    //    case paused
 }
 
 extension Notification.Name {
@@ -37,7 +41,7 @@ class Manager: NSObject {
     public static var previousTurn:WBTurn? = nil
     public static var currentTurn:WBTurn = WBTurn()
     
-    private static var remainingWords = [WBWord]()
+    public static var remainingWords = [WBWord]()
     
     //begin game
     public static func beginGame() {
@@ -57,19 +61,22 @@ class Manager: NSObject {
             gravityPercent: 1,
             gameState: .welcome)
         
-        //notification broadcast
+        //notification broadcast - begin the game
         let updateNotification = Notification.init(name: .gameManager)
         NotificationCenter.default.post(updateNotification)
     }
     
     private static func getRandomTurnWord() -> WBTurnWord {
-        var randomBottomWord = remainingWords.random()
+        var randomBottomWord = WBWord.init()
+        var randomTopWord = WBWord.init()
         
-        while randomBottomWord.isDone == true {
+        if remainingWords.count > 0 {
             randomBottomWord = remainingWords.random()
+            while randomBottomWord.isDone == true {
+                randomBottomWord = remainingWords.random()
+            }
+            randomTopWord = remainingWords.random()
         }
-        
-        let randomTopWord = remainingWords.random()
         
         //same word bias - make a dice with multiple faces
         let randomLimit:Int = Int(1/WBGameConfig.matchingBias.value) //lower spread is higher matching
@@ -86,7 +93,7 @@ class Manager: NSObject {
         return WBTurnWord.init(topWord: randomTopWord, bottomWord: randomBottomWord, isMatching: shouldMatch)
     }
     
-    //Next Turn State Machine
+    //Next Turn State Machine - Update turn based on Action
     public static func updateTurn(action:WBUserAction) {
         
         var nextTurn = currentTurn
@@ -96,7 +103,7 @@ class Manager: NSObject {
         case .tapStart:
             nextTurn.gameState = .start
         
-        //pause state - v2
+        //TODO: V2 - pause state
         case .tapResume:
             nextTurn.gameState = .active
         
@@ -115,12 +122,19 @@ class Manager: NSObject {
         
         //words collided
         case .collision:
-            nextTurn.gameState = .collision
             nextTurn.activeLives -= 1
+            
+            if (nextTurn.activeLives <= 0) {
+                nextTurn.gameState = .gameover
+            }
+            else{
+                nextTurn.gameState = .collision
+            }
             
         //tap tick
         case .tapTick:
             if(Manager.currentTurn.turnWord.isMatching) {
+                //FIXME:CREATE method correct
                 nextTurn.score += WBGameConfig.scorePerWord.intValue
                 nextTurn.gravityPercent += WBGameConfig.difficultyFactor.intValue
                 nextTurn.gameState = .won
@@ -132,18 +146,35 @@ class Manager: NSObject {
                 }
             }
             else {
+                //FIXME:CREATE method for incorrect
                 nextTurn.activeLives -= 1
-                nextTurn.gameState = .lost
+                
+                if (nextTurn.activeLives <= 0) {
+                    nextTurn.gameState = .gameover
+                }
+                else {
+                    nextTurn.gameState = .lost
+                    
+                }
             }
             
            
         //tap cross
         case .tapCross:
             if(Manager.currentTurn.turnWord.isMatching) {
-                nextTurn.gameState = .lost
+                //FIXME:CREATE method for incorrect
                 nextTurn.activeLives -= 1
+                
+                if (nextTurn.activeLives <= 0) {
+                    nextTurn.gameState = .gameover
+                }
+                else {
+                    nextTurn.gameState = .lost
+                    
+                }
             }
             else {
+                //FIXME:CREATE method correct
                 nextTurn.score += WBGameConfig.scorePerWord.intValue
                 nextTurn.gravityPercent += WBGameConfig.difficultyFactor.intValue
                 nextTurn.gameState = .won
@@ -164,14 +195,7 @@ class Manager: NSObject {
             }
         }
         
-        //game over
-        if(nextTurn.gameState == .lost || nextTurn.gameState == .collision) {
-            if (nextTurn.activeLives <= 0) {
-                nextTurn.gameState = .gameover
-            }
-        }
-        
-        //did change state
+        //check if change state
         let didChangeState = currentTurn.gameState != nextTurn.gameState
         
         previousTurn = currentTurn
