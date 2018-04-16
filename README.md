@@ -58,39 +58,21 @@ https://medium.com/@agarwalarpit/building-an-ios-game-with-9-steps-of-design-and
 Word Blocks has single source of truth for the views in the whole app. I architected the views to be reactive to the data model. A notification is fired to update all the views whenever the data model has been updated. This makes the data flow unidirectional to the Views — somewhat similar to how React works. 
 
 - All data for the current turn is saved in a `WBTurn` object
-`   var score:Int
-    var activeLives:Int
-    var turnWord:WBTurnWord
-    var gravityPercent:Int
-    var gameState:WBGameState 
-    `
+  `score, activeLives, turnWord, gravityPercent, gameState`
 
 - The user can perform the following actions during the Gameplay
-`   case tapStart
-    case tapResume
-    case tapRestart
-    case tapTick
-    case tapCross
-    case tapScreen
-    case collision //when no user action
-    `
+  `tapStart tapResume tapRestart tapTick tapCross tapScreen collision`
 
 - The game is always in one of the following states 
-
-`   case start
-    case active
-    case won
-    case lost
-    case collision
-    case gameover
-    `
+  `start active won lost collision gameover`
     
-- A Manager class runs the whole gameplay
+- A Manager class runs the whole gameplay. It has in in-built state machine for the whole game logic.
+This method updates a model with a user action, and broadcasts a notification to the whole app to update views.
 `
     public static func updateTurn(action:WBUserAction)
 
 `
-This gameplay runs on a state machine. Depending on the user action provided to this method, the current game state jumps to a new state with an updated data model. Since there is a persistent single source of truth for data in the whole app, everything remains in sync.
+Depending on the user action provided to this method, the current game state jumps to a new state with an updated data model. Since there is a persistent single source of truth for data in the whole app, everything remains in sync.
     
 
 ## Time Invested
@@ -102,7 +84,7 @@ This gameplay runs on a state machine. Depending on the user action provided to 
 
 ## Meta
 
-Arpit Agarwal – [@YourTwitter](https://twitter.com/dbader_org) – YourEmail@example.com
+Arpit Agarwal – [@My Website](https://arpit.work) – hi@arpit.work
 
 Distributed under the Apache license. See ``LICENSE`` for more information.
 
