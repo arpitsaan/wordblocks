@@ -1,7 +1,10 @@
 👋Hi! Welcome to the Word Blocks Page.
-[Read design process on the Medium Blog](https://medium.com/@agarwalarpit/building-an-ios-game-with-9-steps-of-design-and-9-steps-of-programming-in-24-hours-397a048fe957)
 
-![Word Blocks in Action](/images/all3.PNG?raw=true "Game Start!")
+
+[Read design process on the Medium Blog](https://medium.com/@agarwalarpit/building-an-ios-game-with-9-steps-of-design-and-9-steps-of-programming-in-24-hours-397a048fe957)
+[Link to Sketch File for Design Assets](https://www.dropbox.com/s/sataip7q3y7zzd1/wordblocks.sketch?dl=0)
+
+![Word Blocks in Action](/images/all3.png?raw=true "Game Start!")
 
 # What is Word Blocks?
 World Blocks is an iPhone game to learn Spanish (if you already know English). 
